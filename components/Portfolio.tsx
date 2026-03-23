@@ -383,9 +383,10 @@ export default function Portfolio() {
 
         /* Tablet — stack browser above detail */
         @media (max-width: 960px) {
-          .vault-main    { grid-template-columns: 1fr !important; width: 100% !important; overflow: hidden !important; }
-          .vault-browser { min-height: 260px !important; max-height: 320px !important; width: 100% !important; }
-          .vault-sidebar { max-height: none !important; overflow: visible !important; width: 100% !important; }
+          .vault-main     { grid-template-columns: 1fr !important; width: 100% !important; overflow: hidden !important; }
+          .vault-left-col { min-height: 0 !important; }
+          .vault-browser  { min-height: 260px !important; max-height: 320px !important; width: 100% !important; }
+          .vault-sidebar  { max-height: none !important; overflow: visible !important; width: 100% !important; }
           /* Selector becomes horizontal scroll strip */
           .vault-selector { flex-direction: row !important; overflow-x: auto !important; overflow-y: hidden !important; -webkit-overflow-scrolling: touch; scrollbar-width: none; width: 100%; }
           .vault-selector::-webkit-scrollbar { display: none; }
@@ -504,7 +505,7 @@ export default function Portfolio() {
         >
 
           {/* ── LEFT: Browser showcase ── */}
-          <div style={{
+          <div className="vault-left-col" style={{
             display: "flex", flexDirection: "column", gap: 2,
             minHeight: 560, minWidth: 0,
           }}>
@@ -673,7 +674,7 @@ export default function Portfolio() {
                 opacity: transitioning ? 0 : 1,
                 transform: transitioning ? "translateX(8px)" : "translateX(0)",
                 transition: "opacity 0.28s, transform 0.28s",
-                overflow: "auto",
+                overflow: "hidden",
               }}>
                 {/* Header */}
                 <div>

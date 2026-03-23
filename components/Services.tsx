@@ -345,14 +345,14 @@ function PerformanceVisual({ active }: { active: boolean }) {
   ];
 
   return (
-    <div style={{ position:"absolute",inset:0,padding:"32px 40px",display:"flex",flexDirection:"column",gap:24,justifyContent:"center" }}>
+    <div className="perf-visual" style={{ position:"absolute",inset:0,padding:"32px 40px",display:"flex",flexDirection:"column",gap:24,justifyContent:"center" }}>
       <div style={{ display:"flex",alignItems:"center",gap:28 }}>
-        <div style={{ width:96,height:96,borderRadius:"50%",flexShrink:0,border:"2px solid #F25C43",display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(242,92,67,0.06)",boxShadow:"0 0 60px rgba(242,92,67,0.2), inset 0 0 40px rgba(242,92,67,0.04)" }}>
-          <span style={{ fontFamily:"var(--font-display)",fontSize:44,color:"#F25C43",lineHeight:1 }}>100</span>
+        <div className="perf-circle" style={{ width:96,height:96,borderRadius:"50%",flexShrink:0,border:"2px solid #F25C43",display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(242,92,67,0.06)",boxShadow:"0 0 60px rgba(242,92,67,0.2), inset 0 0 40px rgba(242,92,67,0.04)" }}>
+          <span className="perf-score" style={{ fontFamily:"var(--font-display)",fontSize:44,color:"#F25C43",lineHeight:1 }}>100</span>
         </div>
         <div>
           <div style={{ fontFamily:"var(--font-mono)",fontSize:9,color:"rgba(255,255,255,0.3)",letterSpacing:"0.22em",marginBottom:8 }}>PAGESPEED INSIGHTS</div>
-          <div style={{ fontFamily:"var(--font-display)",fontSize:32,color:"#fff",letterSpacing:"0.04em",lineHeight:1,marginBottom:6 }}>PERFECT SCORE</div>
+          <div className="perf-title" style={{ fontFamily:"var(--font-display)",fontSize:32,color:"#fff",letterSpacing:"0.04em",lineHeight:1,marginBottom:6 }}>PERFECT SCORE</div>
           <div style={{ fontFamily:"var(--font-mono)",fontSize:9,color:"rgba(255,255,255,0.3)",letterSpacing:"0.16em" }}>GUARANTEED ON EVERY PROJECT</div>
         </div>
       </div>
@@ -492,11 +492,15 @@ export default function Services() {
           .svc-visual-wrap { min-height:380px !important; }
         }
         @media (max-width:640px) {
-          .svc-visual-wrap { min-height:340px !important; }
+          .svc-visual-wrap { min-height:500px !important; }
           .cap-name { font-size:13px; }
           .cap-row  { min-width:130px; padding:12px 14px; }
           .svc-copy-strip { grid-template-columns:1fr !important; }
           .svc-copy-strip .metric-badge { align-self:flex-start; }
+          .perf-visual { padding:20px 22px !important; gap:14px !important; justify-content:flex-start !important; }
+          .perf-circle { width:72px !important; height:72px !important; }
+          .perf-score  { font-size:34px !important; }
+          .perf-title  { font-size:22px !important; }
         }
       `}</style>
 

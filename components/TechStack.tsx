@@ -94,7 +94,7 @@ const STACK = [
   {
     id: "nextjs",
     name: "Next.js",
-    tag: "RUNTIME",
+    tag: "RUNTIME_FRAMEWORK",
     version: "v14.2",
     role: "Frontend Framework",
     desc: "App Router with RSC, streaming, and edge-optimised delivery. Every project ships with ISR and route-level code splitting.",
@@ -124,7 +124,7 @@ const STACK = [
   {
     id: "tailwind",
     name: "Tailwind",
-    tag: "STYLING",
+    tag: "STYLING_ENGINE",
     version: "v4",
     role: "Utility CSS",
     desc: "CSS-first config with @theme tokens in v4. Zero runtime, sub-10kb output. Design tokens consistent across every component.",
@@ -144,7 +144,7 @@ const STACK = [
   {
     id: "shopify",
     name: "Shopify",
-    tag: "COMMERCE",
+    tag: "COMMERCE_LOGIC",
     version: "Hydrogen",
     role: "Commerce Platform",
     desc: "Headless Shopify via Hydrogen and Storefront API. Product catalogues, carts, and checkout rebuilt as fast Next.js experiences.",
@@ -164,7 +164,7 @@ const STACK = [
   {
     id: "framer",
     name: "Framer Motion",
-    tag: "ANIMATION",
+    tag: "ANIMATION_STATE",
     version: "v11",
     role: "Motion Engine",
     desc: "Layout animations, shared element transitions, and gesture-driven interactions. The difference between a site that works and one that feels alive.",

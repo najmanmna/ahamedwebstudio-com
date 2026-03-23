@@ -169,7 +169,7 @@ function UrlScanner({ onUrlScanned }: { onUrlScanned?: (url: string | null) => v
         </h2>
         <p style={{fontFamily:"var(--font-sans)",fontSize:14,fontWeight:300,color:"rgba(255,255,255,0.65)",lineHeight:1.8,borderLeft:"2px solid rgba(26,40,72,0.6)",paddingLeft:18,marginBottom:0}}>
           Have a WordPress site your client is embarrassed by?<br/>
-          Paste the URL. See what it becomes.
+          Paste the URL. Let's engineer its replacement.
         </p>
       </div>
 
@@ -290,10 +290,20 @@ export default function Contact() {
     if (Object.keys(e).length) { setErrors(e); return; }
     setErrors({});
     setStatus("submitting");
-    await new Promise(r => setTimeout(r, 1800));
-    setStatus("success");
-    setForm({ name:"", email:"", company:"", message:"", budget:"" });
-    setTimeout(() => setStatus("idle"), 6000);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("Send failed");
+      setStatus("success");
+      setForm({ name:"", email:"", company:"", message:"", budget:"" });
+      setTimeout(() => setStatus("idle"), 6000);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
   };
 
   const set = (field: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -302,10 +312,9 @@ export default function Contact() {
   };
 
   const BUDGET_OPTIONS = [
-    { label:"< $500",      sub:"Small fixes"   },
-    { label:"$500–$1500",  sub:"Landing page"  },
-    { label:"$1500–$5000", sub:"Full build"    },
-    { label:"$5000+",      sub:"Retainer"      },
+    { label:"$1,500–$3,000", sub:"Next.js Front-end Architecture"     },
+    { label:"$3,000–$5,000", sub:"Headless CMS / Full-Stack" },
+    { label:"$5,000+",       sub:"Agency Retainer"     },
   ];
 
   return (
@@ -435,20 +444,24 @@ export default function Contact() {
                       <TerminalInput label="Company // Agency" placeholder="STUDIO NAME"              value={form.company} onChange={set("company")} />
                     </div>
 
-                    <TerminalInput label="System_Email" type="email" placeholder="JOHN@COMPANY.COM" error={errors.email} value={form.email} onChange={set("email")}/>
+                    <TerminalInput label="DIRECTOR_EMAIL" type="email" placeholder="JOHN@COMPANY.COM" error={errors.email} value={form.email} onChange={set("email")}/>
 
-                    <TerminalInput
-                      label="Project_Parameters" type="textarea" rows={5}
-                      placeholder={"DEFINE OBJECTIVES, STACK, AND DELIVERY WINDOW...\n\nE.G: REBUILD THEIRCLIENT.COM → NEXT.JS, UK AGENCY, LAUNCH IN 2WKS"}
-                      error={errors.message} value={form.message} onChange={set("message")}
-                    />
+                 <TerminalInput
+  label="Project_Parameters" 
+  type="textarea" 
+  rows={5}
+  placeholder={"DEFINE LEGACY URL, PREFERRED STACK, AND DEADLINE...\n\nE.G: REBUILD THEIRCLIENT.COM → NEXT.JS & SANITY CMS.\nUK AGENCY.\nSTAGING REQUIRED BY 15TH APRIL."}
+  error={errors.message} 
+  value={form.message} 
+  onChange={set("message")}
+/>
 
                     {/* ── Budget — card grid, not pill buttons ── */}
                     <div>
                       <div style={{fontFamily:"var(--font-mono)",fontSize:10,letterSpacing:"0.22em",color:"rgba(255,255,255,0.7)",marginBottom:12,textTransform:"uppercase"}}>
                         Estimated_Budget
                       </div>
-                      <div className="budget-grid" style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:6}}>
+                      <div className="budget-grid" style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:6}}>
                         {BUDGET_OPTIONS.map(opt=>{
                           const sel = form.budget === opt.label;
                           return (

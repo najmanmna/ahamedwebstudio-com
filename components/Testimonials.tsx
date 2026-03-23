@@ -10,44 +10,44 @@ import { useEffect, useRef, useState } from "react";
 const LOGS = [
   {
     id: "LOG_01",
-    name: "velauthapillai",
-    entity: "Design Client",
+    name: "Agency Director", // Anonymized Ari
+    entity: "UK Design Agency",
     location: "UK", region: "United Kingdom",
-    verified: "FIVERR_5★", rating: 5,
+    verified: "AGENCY_PARTNER", rating: 5,
     content: "Incredible eye for detail and a brilliant designer. The work consistently exceeded what I expected. Would highly recommend — and already have.",
-    highlight: "Incredible eye for detail and a brilliant designer",
-    metric: "5★ FIVERR", project: "Frontend Design", tag: "UK CLIENT",
+    highlight: "consistently exceeded what I expected",
+    metric: "ASYNC EXECUTION", project: "Multiple Corporate Frontends", tag: "UK AGENCY",
   },
   {
     id: "LOG_02",
     name: "pinoenmerida",
-    entity: "E-Commerce Client",
+    entity: "Global E-Commerce",
     location: "CL", region: "Latin America",
-    verified: "FIVERR_5★", rating: 5,
-    content: "Ahamed exceeded my expectations with his speed and professionalism. Always quick to respond, always willing to adjust. His technical competence and attention to detail really stood out. Working with him was a pleasure — I wouldn't hesitate to hire him again.",
-    highlight: "technical competence and attention to detail really stood out",
+    verified: "VERIFIED_PLATFORM", rating: 5,
+    content: "Ahamed exceeded my expectations with his speed and professionalism. Always quick to respond, always willing to adjust. His technical competence and attention to detail really stood out.",
+    highlight: "technical competence and attention to detail",
     metric: "SPEED + CRAFT", project: "Frontend Sprint", tag: "EXECUTION",
   },
   {
     id: "LOG_03",
-    name: "Uthpala Pathirana",
-    entity: "HEDONE Skincare",
-    location: "LK", region: "South Asia",
-    verified: "DIRECT_CLIENT", rating: 5,
-    content: "For my products I ended up doing even the packaging designs since I couldn't find anyone with good taste. For the first time someone nailed it and that's you. Literally my jaw dropped.",
-    highlight: "couldn't find anyone with good taste",
-    metric: "DESIGN EXCELLENCE", project: "Brand Website", tag: "TASTE",
-  },
-  {
-    id: "LOG_04",
     name: "Sajid Ifham",
     entity: "Elvyn Store",
     location: "LK", region: "South Asia",
-    verified: "GOOGLE_REVIEW", rating: 5,
+    verified: "DIRECT_BUILD", rating: 5,
     content: "Ahamed handled the full-stack e-commerce architecture exactly to our expectations. He is fully committed to delivering high-performance assets on time without compromising quality.",
-    highlight: "delivering high-performance assets on time without compromising quality",
+    highlight: "delivering high-performance assets on time",
     metric: "100 CWV", project: "E-Commerce Platform", tag: "PERFORMANCE",
   },
+  {
+    id: "LOG_04",
+    name: "Uthpala Pathirana",
+    entity: "Direct Brand Partner", // Shifted to sound more B2B
+    location: "LK", region: "South Asia",
+    verified: "DIRECT_CLIENT", rating: 5,
+    content: "For my products I ended up doing even the packaging designs since I couldn't find anyone with good taste. For the first time someone nailed it and that's you. Literally my jaw dropped.",
+    highlight: "Literally my jaw dropped",
+    metric: "DESIGN EXCELLENCE", project: "Brand Architecture", tag: "TASTE",
+  }
 ];
 
 // ─── SELECTOR CARD ────────────────────────────────────────────────────────────
@@ -251,7 +251,7 @@ export default function Testimonials() {
               color: "rgba(255,255,255,0.3)",
             }}>
               <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#F25C43", animation: "blink 2s ease infinite", display: "inline-block" }} />
-              ALL REVIEWS VERIFIED
+              ALL_REVIEWS_VERIFIED
             </div>
           </div>
         </div>
