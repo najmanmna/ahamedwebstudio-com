@@ -2,6 +2,93 @@
 
 import { useEffect, useRef, useState } from "react";
 
+// ─── CORRECT LOGOS ────────────────────────────────────────────────────────────
+// Next.js — wordmark N shape, official
+const NextLogo = () => (
+  <svg viewBox="0 0 48 48" fill="none" width="28" height="28">
+    <path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z" fill="currentColor" opacity="0.15" stroke="currentColor" strokeWidth="1"/>
+    <path d="M14 32V16h3.5l9 13.5V16H30v16h-3.5L17.5 18.5V32H14z" fill="currentColor"/>
+  </svg>
+);
+
+// TypeScript — proper blue square with TS
+const TSLogo = () => (
+  <svg viewBox="0 0 28 28" fill="none" width="28" height="28">
+    <rect x="2" y="2" width="24" height="24" rx="2" fill="currentColor" opacity="0.15" stroke="currentColor" strokeWidth="1"/>
+    <path d="M8 14h7M11.5 11v9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+    <path d="M17.5 17.5c.3.5.9.8 1.5.8.9 0 1.5-.5 1.5-1.3 0-.7-.4-1.1-1.4-1.4-.8-.3-1.6-.7-1.6-1.7 0-.9.7-1.6 1.8-1.6.7 0 1.3.3 1.6.8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+  </svg>
+);
+
+// React — atom
+const ReactLogo = () => (
+  <svg viewBox="0 0 28 28" fill="none" width="28" height="28">
+    <circle cx="14" cy="14" r="2.2" fill="currentColor"/>
+    <ellipse cx="14" cy="14" rx="11" ry="4.5" stroke="currentColor" strokeWidth="1.2"/>
+    <ellipse cx="14" cy="14" rx="11" ry="4.5" stroke="currentColor" strokeWidth="1.2" transform="rotate(60 14 14)"/>
+    <ellipse cx="14" cy="14" rx="11" ry="4.5" stroke="currentColor" strokeWidth="1.2" transform="rotate(120 14 14)"/>
+  </svg>
+);
+
+// Sanity — S mark
+const SanityLogo = () => (
+  <svg viewBox="0 0 28 28" fill="currentColor" width="28" height="28">
+    <path d="M19.5 10.8c0-2.8-2.2-4.8-5.5-4.8-2.2 0-4.3.9-5.8 2.4l1.8 2c1.1-1 2.4-1.6 3.8-1.6 1.5 0 2.4.7 2.4 1.8 0 1-.7 1.6-3 2.3-2.6.8-4.3 1.9-4.3 4.4 0 2.7 2.1 4.7 5.3 4.7 2.3 0 4.5-1 6-2.5l-1.8-2c-1.2 1-2.5 1.7-4 1.7-1.5 0-2.4-.7-2.4-1.8 0-1 .7-1.6 3-2.3 2.7-.8 4.5-1.8 4.5-4.3z"/>
+  </svg>
+);
+
+// Tailwind
+const TailwindLogo = () => (
+  <svg viewBox="0 0 28 28" fill="currentColor" width="28" height="28">
+    <path d="M14 7.2c-3.7 0-6.1 1.9-7 5.6 1.4-1.9 3-2.6 4.9-2.1 1.1.27 1.8 1.04 2.67 1.9C15.86 13.95 17.5 15.6 21 15.6c3.7 0 6.1-1.9 7-5.6-1.4 1.9-3 2.6-4.9 2.1-1.1-.27-1.8-1.04-2.67-1.9C19.14 8.85 17.5 7.2 14 7.2zM7 14.8c-3.7 0-6.1 1.9-7 5.6 1.4-1.9 3-2.6 4.9-2.1 1.1.27 1.8 1.04 2.67 1.9C8.86 21.55 10.5 23.2 14 23.2c3.7 0 6.1-1.9 7-5.6-1.4 1.9-3 2.6-4.9 2.1-1.1-.27-1.8-1.04-2.67-1.9C12.14 16.45 10.5 14.8 7 14.8z"/>
+  </svg>
+);
+
+// Three.js — geometric triangle
+const ThreeLogo = () => (
+  <svg viewBox="0 0 28 28" fill="none" width="28" height="28">
+    <polygon points="14,3 25,22 3,22" stroke="currentColor" strokeWidth="1.4" fill="none"/>
+    <polygon points="14,10 19.5,19 8.5,19" fill="currentColor" opacity="0.55"/>
+    <circle cx="14" cy="3"  r="1.5" fill="currentColor"/>
+    <circle cx="25" cy="22" r="1.5" fill="currentColor"/>
+    <circle cx="3"  cy="22" r="1.5" fill="currentColor"/>
+  </svg>
+);
+
+// Framer Motion — F mark
+const FramerLogo = () => (
+  <svg viewBox="0 0 28 28" fill="currentColor" width="28" height="28">
+    <path d="M5 4h18v9H14L5 4zm0 9h9l9 9H14v-4.5L5 13zm0 9h9v5.5L5 22z"/>
+  </svg>
+);
+
+// Shopify — bag + S (matches Shopify brand icon silhouette)
+const ShopifyLogo = () => (
+  <svg viewBox="0 0 28 28" fill="none" width="28" height="28">
+    {/* Bag body */}
+    <path d="M7 12h14l-1.4 12H8.4L7 12z" fill="currentColor" fillOpacity="0.13" stroke="currentColor" strokeWidth="1.2"/>
+    {/* Handle */}
+    <path d="M11 12c0-1.66 1.34-3 3-3s3 1.34 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" fill="none"/>
+    {/* S glyph */}
+    <path d="M12.2 16.4c0-.9.8-1.6 1.8-1.6h.5c.9 0 1.5-.6 1.5-1.3 0-.5-.4-.9-1-.9" stroke="currentColor" strokeWidth="1.15" strokeLinecap="round" fill="none"/>
+    <path d="M15.8 17.6c0 .9-.8 1.6-1.8 1.6h-.5c-.9 0-1.5.6-1.5 1.3 0 .5.4.9 1 .9" stroke="currentColor" strokeWidth="1.15" strokeLinecap="round" fill="none"/>
+  </svg>
+);
+
+// WebGL — hexagon
+const WebGLLogo = () => (
+  <svg viewBox="0 0 28 28" fill="none" width="28" height="28">
+    <polygon points="14,3 23,8 23,18 14,23 5,18 5,8" stroke="currentColor" strokeWidth="1.3"/>
+    <polygon points="14,8 19,11 19,17 14,20 9,17 9,11" fill="currentColor" opacity="0.35"/>
+    <circle cx="14" cy="3"  r="1.3" fill="currentColor"/>
+    <circle cx="23" cy="8"  r="1.3" fill="currentColor"/>
+    <circle cx="23" cy="18" r="1.3" fill="currentColor"/>
+    <circle cx="14" cy="23" r="1.3" fill="currentColor"/>
+    <circle cx="5"  cy="18" r="1.3" fill="currentColor"/>
+    <circle cx="5"  cy="8"  r="1.3" fill="currentColor"/>
+  </svg>
+);
+
 // ─── STACK DATA ───────────────────────────────────────────────────────────────
 const STACK = [
   {
@@ -10,16 +97,9 @@ const STACK = [
     tag: "RUNTIME",
     version: "v14.2",
     role: "Frontend Framework",
-    desc: "App Router architecture with RSC, streaming, and edge-optimised delivery. Every project ships with ISR and route-level code splitting.",
+    desc: "App Router with RSC, streaming, and edge-optimised delivery. Every project ships with ISR and route-level code splitting.",
     metric: "0.8s TTI",
-    svg: (
-      <svg viewBox="0 0 180 180" fill="none" width="28" height="28">
-        <mask id="nxt"><path d="M0 0h180v180H0z" fill="#fff"/></mask>
-        <g mask="url(#nxt)">
-          <path fillRule="evenodd" clipRule="evenodd" d="M180 0H0v180h180V0zM82.684 136.195L52.894 72.39H41.474v63.805H27v-89.58h25.053l31.158 66.864V46.615h14.473v89.58H82.684zM119.588 88.07l20.18-41.455h17.304l-28.736 57.704-.421.758 12.39 25.052h.02l5.77 11.666h-16.148l-9.978-20.179-19.117-38.652h-.842V141.79h-14.474V46.615h14.474v41.455h-.422z" fill="currentColor"/>
-        </g>
-      </svg>
-    ),
+    Logo: NextLogo,
   },
   {
     id: "react",
@@ -29,16 +109,7 @@ const STACK = [
     role: "Component Engine",
     desc: "Concurrent Mode, Suspense boundaries, and server components. UI trees that scale without accumulating technical debt.",
     metric: "Concurrent Mode",
-    svg: (
-      <svg viewBox="-10.5 -9.45 21 18.9" fill="none" width="28" height="28">
-        <circle cx="0" cy="0" r="2" fill="currentColor"/>
-        <g stroke="currentColor" strokeWidth="1" fill="none">
-          <ellipse rx="10" ry="4.5"/>
-          <ellipse rx="10" ry="4.5" transform="rotate(60)"/>
-          <ellipse rx="10" ry="4.5" transform="rotate(120)"/>
-        </g>
-      </svg>
-    ),
+    Logo: ReactLogo,
   },
   {
     id: "typescript",
@@ -46,31 +117,19 @@ const STACK = [
     tag: "TYPE_SYSTEM",
     version: "v5.4",
     role: "Type Safety",
-    desc: "Strict mode across every project. Type errors caught at compile time mean zero runtime surprises delivered to your clients.",
+    desc: "Strict mode across every project. Type errors caught at compile time — zero runtime surprises delivered to your clients.",
     metric: "Zero Runtime Errors",
-    svg: (
-      <svg viewBox="0 0 128 128" fill="currentColor" width="28" height="28">
-        <path d="M1.5 63.915C1.5 29.496 29.418 1.5 63.996 1.5S126.5 29.496 126.5 63.915 98.58 126.5 64.004 126.5 1.5 98.504 1.5 63.915zm23.67 43.123h18.23V64.84h-7.796v-13.91h33.868v13.91h-7.832v42.198h18.307v12.42H25.17v-12.42zm73.973-10.748c0-8.236-3.56-12.422-17.65-17.746-8.237-3.09-9.39-5.435-9.39-8.487 0-3.905 2.947-6.14 8.236-6.14 5.917 0 9.872 2.716 10.95 7.852l15.53-3.647c-2.603-10.79-11.434-16.47-26.047-16.47-16.37 0-25.08 7.94-25.08 20.016 0 8.87 4.043 13.538 17.5 18.677 8.35 3.09 9.54 5.88 9.54 9.043 0 4.167-3.424 6.623-9.54 6.623-7.518 0-11.536-3.424-12.578-9.86l-16.148 2.68c2.455 12.875 12.02 19.38 29.025 19.38 16.22 0 25.7-8.125 25.7-21.92z"/>
-      </svg>
-    ),
+    Logo: TSLogo,
   },
   {
-    id: "threejs",
-    name: "Three.js",
-    tag: "3D_ENGINE",
-    version: "r165",
-    role: "WebGL Renderer",
-    desc: "Custom shaders, particle systems, and interactive 3D interfaces. The visual layer that makes agency clients look like they spent 10x more.",
-    metric: "60fps @ 4K",
-    svg: (
-      <svg viewBox="0 0 100 100" fill="currentColor" width="28" height="28">
-        <polygon points="50,5 95,80 5,80" fill="none" stroke="currentColor" strokeWidth="6"/>
-        <polygon points="50,30 72,68 28,68" fill="currentColor" opacity="0.6"/>
-        <circle cx="50" cy="5" r="4" fill="currentColor"/>
-        <circle cx="95" cy="80" r="4" fill="currentColor"/>
-        <circle cx="5" cy="80" r="4" fill="currentColor"/>
-      </svg>
-    ),
+    id: "tailwind",
+    name: "Tailwind",
+    tag: "STYLING",
+    version: "v4",
+    role: "Utility CSS",
+    desc: "CSS-first config with @theme tokens in v4. Zero runtime, sub-10kb output. Design tokens consistent across every component.",
+    metric: "Zero Runtime CSS",
+    Logo: TailwindLogo,
   },
   {
     id: "sanity",
@@ -80,25 +139,27 @@ const STACK = [
     role: "Headless CMS",
     desc: "Structured content with real-time CDN delivery. Clients manage their own content without ever touching the codebase.",
     metric: "Real-time CDN",
-    svg: (
-      <svg viewBox="0 0 32 32" fill="currentColor" width="28" height="28">
-        <path d="M27.8 18.3c0 4.9-3.8 7.7-9.4 7.7-4.1 0-8.3-1.7-11.2-4.4l3.3-3.9c2.2 2 4.6 3.3 8 3.3 2.3 0 3.7-.9 3.7-2.4v-.1c0-1.4-.9-2.1-5.1-3.2C11.6 14 7.9 12.6 7.9 7.5v-.1C7.9 3 11.6.4 16.9.4c3.8 0 7.2 1.3 9.8 3.5l-3 4.1c-2.2-1.6-4.5-2.6-6.9-2.6-2.1 0-3.3 1-3.3 2.2v.1c0 1.6 1 2.2 5.4 3.3 4.6 1.2 8 2.9 8 7.3z"/>
-      </svg>
-    ),
+    Logo: SanityLogo,
   },
   {
-    id: "tailwind",
-    name: "Tailwind",
-    tag: "STYLING",
-    version: "v4",
-    role: "Utility CSS",
-    desc: "CSS-first config with @theme tokens in v4. Zero runtime, sub-10kb CSS output. Design tokens that stay consistent across every component.",
-    metric: "Zero Runtime CSS",
-    svg: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
-        <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624-1.177-1.194-2.538-2.576-5.512-2.576z"/>
-      </svg>
-    ),
+    id: "shopify",
+    name: "Shopify",
+    tag: "COMMERCE",
+    version: "Hydrogen",
+    role: "Commerce Platform",
+    desc: "Headless Shopify via Hydrogen and Storefront API. Product catalogues, carts, and checkout rebuilt as fast Next.js experiences.",
+    metric: "Headless API",
+    Logo: ShopifyLogo,
+  },
+  {
+    id: "threejs",
+    name: "Three.js",
+    tag: "3D_ENGINE",
+    version: "r165",
+    role: "WebGL Renderer",
+    desc: "Custom shaders, particle systems, and interactive 3D interfaces. The visual layer that makes agency clients look like they spent 10x more.",
+    metric: "60fps @ 4K",
+    Logo: ThreeLogo,
   },
   {
     id: "framer",
@@ -108,77 +169,48 @@ const STACK = [
     role: "Motion Engine",
     desc: "Layout animations, shared element transitions, and gesture-driven interactions. The difference between a site that works and one that feels alive.",
     metric: "GPU Accelerated",
-    svg: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
-        <path d="M4 0h16v8h-8zM4 8h8l8 8H4zM4 16h8v8z"/>
-      </svg>
-    ),
-  },
-  {
-    id: "webgl",
-    name: "WebGL",
-    tag: "GPU_LAYER",
-    version: "2.0",
-    role: "GPU Pipeline",
-    desc: "Direct GPU access for canvas-based visuals, custom shaders, and hardware-accelerated rendering at frame rates no CSS can match.",
-    metric: "Hardware Rendered",
-    svg: (
-      <svg viewBox="0 0 24 24" fill="none" width="28" height="28">
-        <polygon points="12,2 22,7 22,17 12,22 2,17 2,7" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-        <polygon points="12,7 17,9.5 17,14.5 12,17 7,14.5 7,9.5" fill="currentColor" opacity="0.4"/>
-        <circle cx="12" cy="2" r="1.5" fill="currentColor"/>
-        <circle cx="22" cy="7" r="1.5" fill="currentColor"/>
-        <circle cx="22" cy="17" r="1.5" fill="currentColor"/>
-        <circle cx="12" cy="22" r="1.5" fill="currentColor"/>
-        <circle cx="2" cy="17" r="1.5" fill="currentColor"/>
-        <circle cx="2" cy="7" r="1.5" fill="currentColor"/>
-      </svg>
-    ),
+    Logo: FramerLogo,
   },
 ];
 
 // ─── TERMINAL READOUT ─────────────────────────────────────────────────────────
-function TerminalReadout({ tech }: { tech: typeof STACK[number] }) {
+function TerminalReadout({ tech }: { tech: typeof STACK[0] }) {
   const [lines, setLines] = useState<string[]>([]);
-
-  const LINES = [
-    `> LOADING ${tech.id.toUpperCase()}_MODULE...`,
-    `> VERSION: ${tech.version}`,
-    `> ROLE: ${tech.role.toUpperCase()}`,
-    `> PERF: ${tech.metric.toUpperCase()}`,
-    `> STATUS: [ACTIVE]`,
-  ];
 
   useEffect(() => {
     setLines([]);
+    const LINES = [
+      `> LOADING ${tech.id.toUpperCase()}_MODULE...`,
+      `> VERSION: ${tech.version}`,
+      `> ROLE: ${tech.role.toUpperCase()}`,
+      `> PERF: ${tech.metric.toUpperCase()}`,
+      `> STATUS: [ACTIVE]`,
+    ];
     let i = 0;
     const iv = setInterval(() => {
-      const line = LINES[i];
-      if (line !== undefined) setLines(prev => [...prev, line]);
+      if (i < LINES.length && LINES[i] !== undefined) {
+        const line = LINES[i];
+        setLines(prev => [...prev, line]);
+      }
       i++;
       if (i >= LINES.length) clearInterval(iv);
     }, 90);
     return () => clearInterval(iv);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tech.id]);
 
   return (
-    <div style={{
-      fontFamily: "var(--font-mono)",
-      fontSize: 11,
-      lineHeight: 1.9,
-    }}>
+    <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 1.9 }}>
       {lines.filter(Boolean).map((l, i) => (
         <div key={i} style={{
           color: l.includes("ACTIVE")
             ? "#F25C43"
             : l.includes("VERSION")
               ? "rgba(255,255,255,0.85)"
-              : "rgba(255,255,255,0.55)",
+              : "rgba(255,255,255,0.5)",
           letterSpacing: "0.1em",
         }}>
           {l}
-          {i === lines.length - 1 && lines.length < LINES.length && (
+          {i === lines.length - 1 && (
             <span style={{ animation: "blink 1s step-end infinite" }}>█</span>
           )}
         </div>
@@ -189,25 +221,30 @@ function TerminalReadout({ tech }: { tech: typeof STACK[number] }) {
 
 // ─── MAIN ─────────────────────────────────────────────────────────────────────
 export default function TechStack() {
-  const ref = useRef(null);
-  const [active, setActive] = useState(STACK[0]);
+  const ref      = useRef(null);
+  const [active, setActive]   = useState(STACK[0]);
   const [entered, setEntered] = useState(false);
-  const [fill, setFill] = useState(0);
+  const [fill, setFill]       = useState(0);
+  const [panelOpen, setPanelOpen] = useState(false); // mobile panel toggle
 
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => {
       if (e.isIntersecting) { setEntered(true); obs.disconnect(); }
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1 });
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
 
-  // Progress bar animation on module change
   useEffect(() => {
     setFill(0);
     const t = setTimeout(() => setFill(100), 50);
     return () => clearTimeout(t);
   }, [active.id]);
+
+  const handleSelect = (tech: typeof STACK[0]) => {
+    setActive(tech);
+    setPanelOpen(true); // on mobile, open panel on select
+  };
 
   const activeIndex = STACK.findIndex(s => s.id === active.id);
 
@@ -215,68 +252,81 @@ export default function TechStack() {
     <>
       <style>{`
         @keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0} }
-        @keyframes scanH    { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
-        @keyframes navyGlow { 0%,100%{opacity:0.3} 50%{opacity:0.6} }
+        @keyframes scanH    { 0%{transform:translateX(-100%)} 100%{transform:translateX(200%)} }
+        @keyframes navyGlow { 0%,100%{opacity:0.28} 50%{opacity:0.55} }
+        @keyframes slideUp  { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
 
         .ts-item {
           background: #030303;
-          padding: 26px 22px;
-          display: flex; flex-direction: column; gap: 12px;
+          padding: 22px 20px;
+          display: flex; flex-direction: column; gap: 10px;
           cursor: pointer;
           position: relative; overflow: hidden;
           transition: background 0.3s;
+          -webkit-tap-highlight-color: transparent;
+          min-height: 90px;
         }
         .ts-item::before {
           content: '';
-          position: absolute; top: 0; left: 0; right: 0;
-          height: 1px;
+          position: absolute; top: 0; left: 0; right: 0; height: 1px;
           background: #F25C43;
-          transform: scaleX(0);
-          transform-origin: left;
+          transform: scaleX(0); transform-origin: left;
           transition: transform 0.35s cubic-bezier(0.76,0,0.24,1);
         }
-        /* Navy left edge on active */
         .ts-item::after {
           content: '';
-          position: absolute; top: 0; left: 0; bottom: 0;
-          width: 2px;
+          position: absolute; top: 0; left: 0; bottom: 0; width: 2px;
           background: #1A2848;
-          transform: scaleY(0);
-          transform-origin: bottom;
+          transform: scaleY(0); transform-origin: bottom;
           transition: transform 0.35s cubic-bezier(0.76,0,0.24,1);
         }
-        .ts-item:hover::before,
-        .ts-item.active::before  { transform: scaleX(1); }
-        .ts-item.active::after   { transform: scaleY(1); }
-        .ts-item:hover            { background: rgba(255,255,255,0.018); }
-        .ts-item.active           { background: rgba(242,92,67,0.035); }
+        .ts-item:hover::before, .ts-item.active::before { transform: scaleX(1); }
+        .ts-item.active::after  { transform: scaleY(1); }
+        .ts-item:hover          { background: rgba(255,255,255,0.018); }
+        .ts-item.active         { background: rgba(242,92,67,0.04); }
 
-        .ts-item-tag {
-          font-family: var(--font-mono);
-          font-size: 10px; letter-spacing: 0.25em;
-          color: rgba(255,255,255,0.6); text-transform: uppercase;
-          transition: color 0.3s;
+        .ts-tag {
+          font-family: var(--font-mono); font-size: 9px;
+          letter-spacing: 0.22em; color: rgba(255,255,255,0.35);
+          text-transform: uppercase; transition: color 0.3s;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-        .ts-item.active .ts-item-tag { color: #F25C43; }
+        .ts-item.active .ts-tag { color: #F25C43; }
 
-        .ts-item-icon {
-          color: rgba(255,255,255,0.7);
-          transition: color 0.3s, transform 0.3s;
+        .ts-icon {
+          color: rgba(255,255,255,0.65); transition: color 0.3s, transform 0.3s;
+          display: flex; align-items: center;
         }
-        .ts-item:hover .ts-item-icon,
-        .ts-item.active .ts-item-icon {
-          color: rgba(255,255,255,0.9);
-          transform: scale(1.08);
+        .ts-item:hover .ts-icon, .ts-item.active .ts-icon {
+          color: rgba(255,255,255,0.9); transform: scale(1.06);
         }
 
-        .ts-item-name {
-          font-family: var(--font-mono);
-          font-size: 10px; letter-spacing: 0.12em;
-          color: rgba(255,255,255,0.7); text-transform: uppercase;
-          transition: color 0.3s;
+        .ts-name {
+          font-family: var(--font-mono); font-size: 10px;
+          letter-spacing: 0.1em; color: rgba(255,255,255,0.65);
+          text-transform: uppercase; transition: color 0.3s;
         }
-        .ts-item:hover .ts-item-name,
-        .ts-item.active .ts-item-name { color: rgba(255,255,255,0.9); }
+        .ts-item:hover .ts-name, .ts-item.active .ts-name { color: #fff; }
+
+        /* Mobile panel overlay */
+        .ts-mobile-panel {
+          display: none;
+        }
+
+        @media (max-width: 900px) {
+          .ts-grid     { grid-template-columns: repeat(4, 1fr) !important; }
+          .ts-readout  { display: none !important; }
+          .ts-mobile-panel { display: block !important; }
+        }
+        @media (max-width: 640px) {
+          .ts-grid     { grid-template-columns: repeat(2, 1fr) !important; }
+          .ts-item     { padding: 16px 14px; min-height: 80px; }
+          .ts-tag      { font-size: 8px; letter-spacing: 0.16em; }
+          .ts-name     { font-size: 9px; }
+        }
+        @media (max-width: 380px) {
+          .ts-grid     { grid-template-columns: repeat(2, 1fr) !important; }
+        }
       `}</style>
 
       <section
@@ -287,166 +337,108 @@ export default function TechStack() {
           borderTop: "1px solid rgba(255,255,255,0.05)",
           borderBottom: "1px solid rgba(255,255,255,0.05)",
           padding: "80px 6vw",
-          position: "relative",
-          overflow: "hidden",
+          position: "relative", overflow: "hidden",
         }}
       >
-        {/* Navy ambient — bottom left */}
+        {/* Navy ambient */}
         <div style={{
           position: "absolute", bottom: 0, left: 0,
           width: 400, height: 300,
           background: "radial-gradient(ellipse at 0% 100%, rgba(26,40,72,0.3) 0%, transparent 65%)",
-          pointerEvents: "none",
-          animation: "navyGlow 7s ease-in-out infinite",
+          pointerEvents: "none", animation: "navyGlow 7s ease-in-out infinite",
         }} />
 
         {/* ── Header ── */}
         <div style={{
-          display: "flex", alignItems: "center", gap: 16,
-          marginBottom: 56,
+          display: "flex", alignItems: "center", marginBottom: 48,
           opacity: entered ? 1 : 0,
           transform: entered ? "translateY(0)" : "translateY(16px)",
           transition: "opacity 0.6s ease, transform 0.6s ease",
+          flexWrap: "wrap", gap: 12,
         }}>
-          <div style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: 10, letterSpacing: "0.35em",
-            color: "rgba(255,255,255,0.45)", textTransform: "uppercase",
-          }}>
+          <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.32em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", whiteSpace: "nowrap" }}>
             <span style={{ color: "#F25C43" }}>◆</span> CORE_INFRASTRUCTURE // SYSTEM_MODULES
           </div>
-          <div style={{
-            flex: 1, height: 1,
-            background: "linear-gradient(to right, rgba(242,92,67,0.35), rgba(26,40,72,0.2), transparent)",
-          }} />
-          <div style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: 10, letterSpacing: "0.25em",
-            color: "rgba(255,255,255,0.3)",
-          }}>
+          <div style={{ flex: 1, minWidth: 40, height: 1, background: "linear-gradient(to right, rgba(242,92,67,0.35), rgba(26,40,72,0.2), transparent)" }} />
+          <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.22em", color: "rgba(255,255,255,0.28)", whiteSpace: "nowrap" }}>
             {STACK.length} MODULES_LOADED
           </div>
         </div>
 
-        {/* ── Tech grid ── */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 2,
-          background: "rgba(255,255,255,0.04)",
-          border: "1px solid rgba(255,255,255,0.06)",
-        }} className="ts-grid">
+        {/* ── Module grid ── */}
+        <div
+          className="ts-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: 2,
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.06)",
+          }}
+        >
           {STACK.map((tech, i) => (
             <div
               key={tech.id}
               className={`ts-item${active.id === tech.id ? " active" : ""}`}
-              onClick={() => setActive(tech)}
+              onClick={() => handleSelect(tech)}
               style={{
                 opacity: entered ? 1 : 0,
                 transform: entered ? "translateY(0)" : "translateY(20px)",
-                transition: `opacity 0.5s ease ${i * 0.055}s, transform 0.5s ease ${i * 0.055}s, background 0.3s`,
+                transition: `opacity 0.5s ease ${i * 0.05}s, transform 0.5s ease ${i * 0.05}s, background 0.3s`,
               }}
             >
-              <div className="ts-item-tag">{tech.tag}</div>
-              <div className="ts-item-icon">{tech.svg}</div>
-              <div className="ts-item-name">{tech.name}</div>
+              <div className="ts-tag">{tech.tag}</div>
+              <div className="ts-icon"><tech.Logo /></div>
+              <div className="ts-name">{tech.name}</div>
             </div>
           ))}
         </div>
 
-        {/* ── Readout panel ── */}
-        <div style={{
-          marginTop: 2,
-          background: "rgba(255,255,255,0.018)",
-          border: "1px solid rgba(255,255,255,0.06)",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          opacity: entered ? 1 : 0,
-          transition: "opacity 0.6s ease 0.5s",
-        }} className="ts-readout">
-
-          {/* Left — name + desc + progress */}
-          <div style={{
-            padding: "32px",
-            borderRight: "1px solid rgba(255,255,255,0.05)",
-          }}>
-            {/* Active icon */}
-            <div style={{
-              color: "#F25C43", marginBottom: 16,
-              opacity: 0.7,
-            }}>
-              {active.svg}
+        {/* ── Desktop readout panel ── */}
+        <div
+          className="ts-readout"
+          style={{
+            marginTop: 2,
+            background: "rgba(255,255,255,0.018)",
+            border: "1px solid rgba(255,255,255,0.06)",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            opacity: entered ? 1 : 0,
+            transition: "opacity 0.6s ease 0.5s",
+          }}
+        >
+          {/* Left — name + desc */}
+          <div style={{ padding: "32px", borderRight: "1px solid rgba(255,255,255,0.05)" }}>
+            <div style={{ color: "#F25C43", marginBottom: 16, opacity: 0.7 }}>
+              <active.Logo />
             </div>
-
-            <div style={{
-              fontFamily: "var(--font-display)",
-              fontSize: 52, color: "#fff",
-              letterSpacing: "0.02em", lineHeight: 1,
-              marginBottom: 6,
-            }}>{active.name}</div>
-
-            <div style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 11, letterSpacing: "0.2em",
-              color: "#F25C43", textTransform: "uppercase",
-              marginBottom: 20,
-            }}>
+            <div style={{ fontFamily: "var(--font-display)", fontSize: 52, color: "#fff", letterSpacing: "0.02em", lineHeight: 1, marginBottom: 6 }}>
+              {active.name}
+            </div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.2em", color: "#F25C43", textTransform: "uppercase", marginBottom: 20 }}>
               {active.tag} // {active.version}
             </div>
-
-            <div style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: 13, fontWeight: 300,
-              color: "rgba(255,255,255,0.72)",
-              lineHeight: 1.75, letterSpacing: "0.02em",
-            }}>{active.desc}</div>
-
-            {/* Progress bar */}
-            <div style={{
-              height: 1,
-              background: "rgba(255,255,255,0.07)",
-              marginTop: 28, position: "relative", overflow: "hidden",
-            }}>
-              <div style={{
-                height: "100%",
-                width: `${fill}%`,
-                background: "linear-gradient(to right, #1A2848, #F25C43)",
-                transition: "width 0.7s cubic-bezier(0.76,0,0.24,1)",
-              }} />
-              <div style={{
-                position: "absolute", top: 0, bottom: 0,
-                width: 60,
-                background: "linear-gradient(to right, transparent, rgba(242,92,67,0.35), transparent)",
-                animation: "scanH 2s ease infinite",
-              }} />
+            <div style={{ fontFamily: "var(--font-sans)", fontSize: 13, fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.75, letterSpacing: "0.02em" }}>
+              {active.desc}
             </div>
-
-            <div style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 10, color: "rgba(255,255,255,0.3)",
-              letterSpacing: "0.2em", marginTop: 14,
-            }}>
+            {/* Progress bar */}
+            <div style={{ height: 1, background: "rgba(255,255,255,0.07)", marginTop: 28, position: "relative", overflow: "hidden" }}>
+              <div style={{ height: "100%", width: `${fill}%`, background: "linear-gradient(to right, #1A2848, #F25C43)", transition: "width 0.7s cubic-bezier(0.76,0,0.24,1)" }} />
+              <div style={{ position: "absolute", top: 0, bottom: 0, width: 60, background: "linear-gradient(to right, transparent, rgba(242,92,67,0.35), transparent)", animation: "scanH 2s ease infinite" }} />
+            </div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "rgba(255,255,255,0.28)", letterSpacing: "0.2em", marginTop: 14 }}>
               MODULE {String(activeIndex + 1).padStart(2, "0")} / {String(STACK.length).padStart(2, "0")}
             </div>
           </div>
 
-          {/* Right — terminal + metric badge */}
-          <div style={{
-            padding: "32px",
-            display: "flex", flexDirection: "column",
-            justifyContent: "space-between",
-            background: "rgba(26,40,72,0.06)", // very subtle navy tint on terminal side
-          }}>
+          {/* Right — terminal */}
+          <div style={{ padding: "32px", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "rgba(26,40,72,0.06)" }}>
             <TerminalReadout tech={active} />
-
             <div style={{
               display: "inline-flex", alignItems: "center", gap: 8,
-              padding: "7px 14px",
-              border: "1px solid rgba(242,92,67,0.2)",
-              background: "rgba(242,92,67,0.05)",
-              fontFamily: "var(--font-mono)",
-              fontSize: 10, letterSpacing: "0.2em",
-              color: "#F25C43", textTransform: "uppercase",
+              padding: "7px 14px", border: "1px solid rgba(242,92,67,0.2)",
+              background: "rgba(242,92,67,0.05)", fontFamily: "var(--font-mono)",
+              fontSize: 10, letterSpacing: "0.2em", color: "#F25C43",
               alignSelf: "flex-start", marginTop: 24,
             }}>
               <span style={{ width: 5, height: 5, background: "#F25C43", borderRadius: "50%", display: "inline-block" }} />
@@ -455,13 +447,112 @@ export default function TechStack() {
           </div>
         </div>
 
-        <style>{`
-          @media (max-width: 768px) {
-            .ts-grid     { grid-template-columns: repeat(2, 1fr) !important; }
-            .ts-readout  { grid-template-columns: 1fr !important; }
-            .ts-readout > div:first-child { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.05); }
-          }
-        `}</style>
+        {/* ── Mobile readout — bottom sheet style ── */}
+        <div className="ts-mobile-panel">
+          {panelOpen && (
+            <div style={{
+              marginTop: 2,
+              border: "1px solid rgba(255,255,255,0.07)",
+              borderTop: "2px solid rgba(26,40,72,0.6)",
+              background: "#0A0A0A",
+              animation: "slideUp 0.3s ease forwards",
+              position: "relative",
+            }}>
+              {/* Close button */}
+              <button
+                onClick={() => setPanelOpen(false)}
+                style={{
+                  position: "absolute", top: 14, right: 16,
+                  background: "none", border: "none", cursor: "pointer",
+                  fontFamily: "var(--font-mono)", fontSize: 9,
+                  letterSpacing: "0.14em", color: "rgba(255,255,255,0.3)",
+                  padding: "4px 8px",
+                  borderLeft: "1px solid rgba(255,255,255,0.08)",
+                }}
+              >
+                CLOSE ✕
+              </button>
+
+              {/* Panel chrome */}
+              <div style={{ padding: "14px 20px", borderBottom: "1px solid rgba(255,255,255,0.05)", background: "rgba(26,40,72,0.1)", display: "flex", gap: 6 }}>
+                {["#F25C43","rgba(26,40,72,0.8)","rgba(255,255,255,0.07)"].map((c,i) => (
+                  <div key={i} style={{ width:8,height:8,borderRadius:"50%",background:c }} />
+                ))}
+                <span style={{ fontFamily:"var(--font-mono)",fontSize:9,color:"rgba(255,255,255,0.25)",letterSpacing:"0.16em",marginLeft:8 }}>
+                  MODULE_READOUT.log
+                </span>
+              </div>
+
+              <div style={{ padding: "24px 20px", display: "flex", flexDirection: "column", gap: 20 }}>
+                {/* Name + version */}
+                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
+                  <div>
+                    <div style={{ fontFamily: "var(--font-display)", fontSize: 36, color: "#fff", letterSpacing: "0.03em", lineHeight: 1, marginBottom: 4 }}>
+                      {active.name}
+                    </div>
+                    <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "#F25C43", letterSpacing: "0.18em" }}>
+                      {active.tag} // {active.version}
+                    </div>
+                  </div>
+                  <div style={{ color: "#F25C43", opacity: 0.6, flexShrink: 0, marginTop: 4 }}>
+                    <active.Logo />
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div style={{ height: 1, background: "linear-gradient(to right, #1A2848, rgba(242,92,67,0.3), transparent)" }} />
+
+                {/* Description */}
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.75, margin: 0 }}>
+                  {active.desc}
+                </p>
+
+                {/* Metric + module counter */}
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  <div style={{
+                    display: "inline-flex", alignItems: "center", gap: 7,
+                    padding: "6px 14px", border: "1px solid rgba(242,92,67,0.2)",
+                    background: "rgba(242,92,67,0.05)", fontFamily: "var(--font-mono)",
+                    fontSize: 9, letterSpacing: "0.16em", color: "#F25C43",
+                  }}>
+                    <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#F25C43", display: "inline-block" }} />
+                    {active.metric}
+                  </div>
+                  <div style={{
+                    display: "inline-flex", alignItems: "center", gap: 7,
+                    padding: "6px 14px", border: "1px solid rgba(26,40,72,0.4)",
+                    background: "rgba(26,40,72,0.1)", fontFamily: "var(--font-mono)",
+                    fontSize: 9, letterSpacing: "0.14em", color: "rgba(255,255,255,0.3)",
+                  }}>
+                    MODULE {String(activeIndex + 1).padStart(2,"0")} / {String(STACK.length).padStart(2,"0")}
+                  </div>
+                </div>
+
+                {/* Terminal readout — compact on mobile */}
+                <div style={{ background: "#030303", border: "1px solid rgba(26,40,72,0.3)", borderLeft: "2px solid #1A2848", padding: "14px 16px" }}>
+                  <TerminalReadout tech={active} />
+                </div>
+
+                {/* Progress bar */}
+                <div style={{ height: 1, background: "rgba(255,255,255,0.06)" }}>
+                  <div style={{ height: "100%", width: `${fill}%`, background: "linear-gradient(to right, #1A2848, #F25C43)", transition: "width 0.7s cubic-bezier(0.76,0,0.24,1)" }} />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Tap hint — only when no panel open */}
+          {!panelOpen && (
+            <div style={{
+              marginTop: 8, textAlign: "center",
+              fontFamily: "var(--font-mono)", fontSize: 8,
+              letterSpacing: "0.2em", color: "rgba(255,255,255,0.2)",
+              padding: "10px 0",
+            }}>
+              TAP A MODULE TO INSPECT
+            </div>
+          )}
+        </div>
       </section>
     </>
   );

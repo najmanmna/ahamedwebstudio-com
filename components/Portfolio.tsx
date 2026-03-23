@@ -5,8 +5,8 @@ import { useState, useRef, useEffect, useCallback } from "react";
 type Project = {
   id: string; cat: string; client: string; type: string;
   year: string; location: string; url: string;
-  metric: string; metricLabel: string;
-  palette: string[]; tags: string[]; story: string; result: string;
+  metric: string; metricLabel: string; palette: string[];
+  tags: string[]; story: string; result: string;
   quote: { text: string; author: string };
   locked?: boolean; noLink?: boolean; screenshotOnly?: boolean;
 };
@@ -246,20 +246,13 @@ function ProjectTab({ project, isActive, onClick, revealed }: { project: Project
         all: "unset", cursor: "pointer",
         display: "flex", alignItems: "center", gap: 10,
         padding: "10px 14px",
-        background: isActive ? `rgba(${(project.palette[0].slice(1).match(/../g) ?? []).map(h=>parseInt(h,16)).join(",")},0.08)` : "transparent",
+        background: isActive ? `rgba(${project.palette[0].slice(1).match(/../g)!.map((h: string)=>parseInt(h,16)).join(",")},0.08)` : "transparent",
         border: `1px solid ${isActive ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.04)"}`,
         position: "relative",
         transition: "all 0.3s cubic-bezier(0.16,1,0.3,1)",
         width: "100%", boxSizing: "border-box",
       }}
     >
-      {/* Active left line */}
-      <div style={{
-        position: "absolute", top: 0, left: 0, bottom: 0, width: 2,
-        background: isActive ? "#F25C43" : "transparent",
-        transition: "background 0.3s",
-      }} />
-
       {/* ID */}
       <span style={{
         fontFamily: "var(--font-mono)", fontSize: 9,
@@ -289,14 +282,14 @@ function ProjectTab({ project, isActive, onClick, revealed }: { project: Project
 
       {/* Lock icon */}
       {isLocked && (
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(242,92,67,0.4)" strokeWidth="2">
+        <svg className="vault-tab-lock" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(242,92,67,0.4)" strokeWidth="2">
           <rect x="3" y="11" width="18" height="11" rx="1"/><path d="M7 11V7a5 5 0 0110 0v4"/>
         </svg>
       )}
 
       {/* Metric */}
       {!isLocked && (
-        <span style={{
+        <span className="vault-tab-metric" style={{
           fontFamily: "var(--font-mono)", fontSize: 9,
           color: isActive ? "#F25C43" : "rgba(255,255,255,0.2)",
           letterSpacing: "0.1em", flexShrink: 0,
@@ -380,15 +373,47 @@ export default function Portfolio() {
   return (
     <>
       <style>{`
+        *, *::before, *::after { box-sizing: border-box; }
         @keyframes shimmer    { from{background-position:-200% center} to{background-position:200% center} }
         @keyframes fadeInUp   { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
         @keyframes pulse      { 0%,100%{opacity:1} 50%{opacity:0.3} }
         @keyframes navyBreath { 0%,100%{opacity:0.2} 50%{opacity:0.5} }
         @keyframes blink      { 0%,100%{opacity:1} 50%{opacity:0} }
+        /* ── MOBILE OVERHAUL ── */
+
+        /* Tablet — stack browser above detail */
         @media (max-width: 960px) {
-          .vault-main { grid-template-columns: 1fr !important; }
-          .vault-browser { min-height: 300px !important; max-height: 360px !important; }
-          .vault-sidebar { max-height: none !important; }
+          .vault-main    { grid-template-columns: 1fr !important; width: 100% !important; overflow: hidden !important; }
+          .vault-browser { min-height: 260px !important; max-height: 320px !important; width: 100% !important; }
+          .vault-sidebar { max-height: none !important; overflow: visible !important; width: 100% !important; }
+          /* Selector becomes horizontal scroll strip */
+          .vault-selector { flex-direction: row !important; overflow-x: auto !important; overflow-y: hidden !important; -webkit-overflow-scrolling: touch; scrollbar-width: none; width: 100%; }
+          .vault-selector::-webkit-scrollbar { display: none; }
+          .vault-selector-header { display: none !important; }
+          .vault-tab { flex-direction: column !important; min-width: 110px !important; flex-shrink: 0 !important; padding: 12px 14px !important; border-left: none !important; border-top: 2px solid transparent !important; box-sizing: border-box !important; }
+          .vault-tab.tab-active  { border-top-color: #F25C43 !important; border-left: none !important; }
+          .vault-tab-metric { display: none !important; }
+          .vault-tab-lock   { display: none !important; }
+        }
+
+        /* Mobile — tighter everything */
+        @media (max-width: 640px) {
+          .vault-browser    { min-height: 200px !important; max-height: 260px !important; width: 100% !important; }
+          .vault-detail     { padding: 14px !important; gap: 12px !important; }
+          .vault-h3         { font-size: 20px !important; }
+          .vault-metric     { padding: 6px 10px !important; max-width: 100% !important; }
+          .vault-metric-num { font-size: 20px !important; }
+          .vault-story      { font-size: 12px !important; }
+          .vault-quote      { display: none !important; }
+          .vault-tags       { gap: 4px !important; overflow-x: auto !important; flex-wrap: nowrap !important; padding-bottom: 2px; }
+          .vault-tab        { min-width: 90px !important; padding: 10px 10px !important; }
+          .vault-section-tabs button { padding: 0 14px !important; font-size: 9px !important; height: 38px !important; }
+          .vault-lock-ring  { width: 60px !important; height: 60px !important; }
+        }
+
+        @media (max-width: 400px) {
+          .vault-browser { min-height: 170px !important; }
+          .vault-tab     { min-width: 80px !important; }
         }
       `}</style>
 
@@ -397,9 +422,10 @@ export default function Portfolio() {
         ref={sectionRef}
         style={{
           background: "#030303",
-          padding: "100px 6vw",
+          padding: "clamp(60px,10vw,100px) clamp(16px,6vw,80px)",
           borderTop: "1px solid rgba(255,255,255,0.04)",
           position: "relative", overflow: "hidden",
+          maxWidth: "100vw", boxSizing: "border-box",
         }}
       >
         {/* Navy ambient */}
@@ -426,12 +452,12 @@ export default function Portfolio() {
             </div>
             <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3rem,8vw,7rem)", color: "#fff", lineHeight: 0.9, textTransform: "uppercase" }}>
               THE<br />
-              <span style={{ WebkitTextStroke: "1px rgba(255,255,255,0.18)", color: "transparent" }}>VAULT.</span>
+              <span style={{ WebkitTextStroke: "2px rgba(255,255,255,0.7)", color: "transparent", filter: "drop-shadow(0 0 18px rgba(255,255,255,0.12))" }}>VAULT.</span>
             </h2>
           </div>
 
           {/* Section tabs */}
-          <div style={{ display: "flex", background: "#0A0A0A", border: "1px solid rgba(255,255,255,0.07)", position: "relative", overflow: "hidden" }}>
+          <div className="vault-section-tabs" style={{ display: "flex", background: "#0A0A0A", border: "1px solid rgba(255,255,255,0.07)", position: "relative", overflow: "hidden" }}>
             <div style={{
               position: "absolute", top: 0, bottom: 0, width: "50%",
               background: section === "retail" ? "rgba(255,255,255,0.04)" : "rgba(26,40,72,0.28)",
@@ -473,13 +499,14 @@ export default function Portfolio() {
             gap: 2,
             opacity: entered ? 1 : 0,
             transition: "opacity 0.7s ease 0.15s",
+            minWidth: 0, overflow: "hidden",
           }}
         >
 
           {/* ── LEFT: Browser showcase ── */}
           <div style={{
             display: "flex", flexDirection: "column", gap: 2,
-            minHeight: 560,
+            minHeight: 560, minWidth: 0,
           }}>
             {/* Browser frame */}
             <div
@@ -516,7 +543,7 @@ export default function Portfolio() {
                   <div style={{ position: "absolute", inset: 0, background: "rgba(6,6,16,0.5)", backdropFilter: "blur(3px)" }} />
 
                   {/* Decrypt ring */}
-                  <div style={{ position: "relative", width: 88, height: 88, zIndex: 1 }}>
+                  <div className="vault-lock-ring" style={{ position: "relative", width: 88, height: 88, zIndex: 1 }}>
                     <svg width="88" height="88" style={{ transform: "rotate(-90deg)" }}>
                       <circle cx="44" cy="44" r="36" fill="none" stroke="rgba(26,40,72,0.6)" strokeWidth="1.5" />
                       <circle cx="44" cy="44" r="36" fill="none" stroke="#F25C43" strokeWidth="1.5"
@@ -565,7 +592,7 @@ export default function Portfolio() {
               opacity: transitioning ? 0 : 1,
               transition: "opacity 0.28s ease",
             }}>
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              <div className="vault-tags" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                 {project.tags.map(t => (
                   <span key={t} style={{
                     padding: "3px 9px",
@@ -612,7 +639,7 @@ export default function Portfolio() {
           {/* ── RIGHT: Detail + selector ── */}
           <div className="vault-sidebar" style={{
             display: "flex", flexDirection: "column", gap: 2,
-            maxHeight: 620, overflow: "hidden",
+            maxHeight: 620, overflow: "hidden", minWidth: 0,
           }}>
 
             {/* Detail panel */}
@@ -640,7 +667,7 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              <div style={{
+              <div className="vault-detail" style={{
                 flex: 1, padding: "22px 24px",
                 display: "flex", flexDirection: "column", gap: 18,
                 opacity: transitioning ? 0 : 1,
@@ -653,7 +680,7 @@ export default function Portfolio() {
                   <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.2em",color:"rgba(255,255,255,0.3)",marginBottom:8 }}>
                     {project.id} · {project.year} · {project.location}
                   </div>
-                  <h3 style={{
+                  <h3 className="vault-h3" style={{
                     fontFamily:"var(--font-display)", fontSize:28,
                     color: isLocked ? "rgba(255,255,255,0.2)" : "#fff",
                     letterSpacing:"0.04em", lineHeight:1, marginBottom:4,
@@ -668,14 +695,14 @@ export default function Portfolio() {
                 </div>
 
                 {/* Metric badge */}
-                <div style={{
+                <div className="vault-metric" style={{
                   display:"inline-flex", alignItems:"center", gap:10,
                   padding:"9px 14px",
-                  background: `rgba(${project.palette[0].slice(1).match(/../g)?.map(h=>parseInt(h,16)).join(",")},0.08)`,
+                  background: `rgba(${(project.palette[0].slice(1).match(/../g)||[]).map(h=>parseInt(h,16)).join(",")},0.08)`,
                   border:`1px solid ${project.palette[0]}33`,
                   width:"fit-content",
                 }}>
-                  <span style={{ fontFamily:"var(--font-display)",fontSize:28,color:project.palette[0],lineHeight:1 }}>{project.metric}</span>
+                  <span className="vault-metric-num" style={{ fontFamily:"var(--font-display)",fontSize:28,color:project.palette[0],lineHeight:1 }}>{project.metric}</span>
                   <span style={{ fontFamily:"var(--font-mono)",fontSize:8,letterSpacing:"0.16em",color:"rgba(255,255,255,0.35)",textTransform:"uppercase" }}>{project.metricLabel}</span>
                 </div>
 
@@ -687,7 +714,7 @@ export default function Portfolio() {
                   filter: isLocked ? "blur(4px)" : "none",
                   transition:"opacity 0.4s, filter 0.4s",
                 }}>
-                  <p style={{ fontFamily:"var(--font-sans)",fontSize:13,fontWeight:300,color:"rgba(255,255,255,0.72)",lineHeight:1.75,marginBottom:10 }}>
+                  <p style={{ fontFamily:"var(--font-sans)",fontSize:13,fontWeight:300,color:"rgba(255,255,255,0.6)",lineHeight:1.75,marginBottom:10 }}>
                     {project.story}
                   </p>
                   <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.14em",color:"#F25C43" }}>
@@ -697,8 +724,8 @@ export default function Portfolio() {
 
                 {/* Quote */}
                 {!isLocked && (
-                  <div style={{ paddingTop:12, borderTop:"1px solid rgba(255,255,255,0.05)" }}>
-                    <p style={{ fontFamily:"var(--font-sans)",fontSize:12,fontWeight:300,color:"rgba(255,255,255,0.65)",lineHeight:1.7,fontStyle:"italic",marginBottom:6 }}>
+                  <div className="vault-quote" style={{ paddingTop:12, borderTop:"1px solid rgba(255,255,255,0.05)" }}>
+                    <p style={{ fontFamily:"var(--font-sans)",fontSize:12,fontWeight:300,color:"rgba(255,255,255,0.5)",lineHeight:1.7,fontStyle:"italic",marginBottom:6 }}>
                       "{project.quote.text}"
                     </p>
                     <span style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.12em",color:"rgba(255,255,255,0.3)" }}>
@@ -715,17 +742,19 @@ export default function Portfolio() {
               border: "1px solid rgba(255,255,255,0.06)",
               flexShrink: 0,
             }}>
-              <div style={{ padding:"9px 14px", borderBottom:"1px solid rgba(255,255,255,0.04)", fontFamily:"var(--font-mono)",fontSize:8,letterSpacing:"0.22em",color:"rgba(255,255,255,0.2)" }}>
+              <div className="vault-selector-header" style={{ padding:"9px 14px", borderBottom:"1px solid rgba(255,255,255,0.04)", fontFamily:"var(--font-mono)",fontSize:8,letterSpacing:"0.22em",color:"rgba(255,255,255,0.2)" }}>
                 {section === "retail" ? `RETAIL_INDEX // ${RETAIL.length} PROJECTS` : `CORPORATE_VAULT // ${CORPORATE.length} PROJECTS`}
               </div>
-              {projects.map((p, i) => (
-                <ProjectTab
-                  key={p.id} project={p}
-                  isActive={activeIdx === i}
-                  onClick={() => goTo(i)}
-                  revealed={revealed}
-                />
-              ))}
+              <div className="vault-selector" style={{ display:"flex", flexDirection:"column" }}>
+                {projects.map((p, i) => (
+                  <ProjectTab
+                    key={p.id} project={p}
+                    isActive={activeIdx === i}
+                    onClick={() => goTo(i)}
+                    revealed={revealed}
+                  />
+                ))}
+              </div>
 
               {/* Corporate vault status */}
               {section === "corporate" && (

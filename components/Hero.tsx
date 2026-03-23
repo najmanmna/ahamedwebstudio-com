@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 // ─── SCRAMBLE ─────────────────────────────────────────────────────────────────
 const CHARS = "!<>-_\\/[]{}—=+*^?#@$%&";
-function useScramble(text: string, delay: number = 0) {
+function useScramble(text: string, delay = 0) {
   const [display, setDisplay] = useState(() => text.replace(/\S/g, "_"));
   useEffect(() => {
     let iter = 0, iv: ReturnType<typeof setInterval>;
@@ -77,9 +77,8 @@ function FlowCanvas() {
 
     class Particle {
       x!: number; y!: number; px!: number; py!: number;
-      vx!: number; vy!: number;
-      life!: number; maxLife!: number; speed!: number; size!: number;
-      type!: string;
+      vx!: number; vy!: number; life!: number; maxLife!: number;
+      speed!: number; size!: number; type!: string;
       constructor() { this.reset(true); }
       reset(init = false) {
         this.x  = Math.random() * W;
@@ -309,9 +308,18 @@ export default function Hero() {
         @keyframes hintPulse { 0%,100%{opacity:0} 30%,70%{opacity:1} }
 
         .hero-s {
-          position:relative; min-height:100vh; background:#030303; overflow:hidden;
+          position:relative; min-height:100svh; background:#030303; overflow:hidden;
           display:flex; flex-direction:column; justify-content:center;
-          padding:0 6vw; padding-top:96px; padding-bottom:44px;
+          padding:0 6vw; padding-top:80px; padding-bottom:44px;
+        }
+
+        .hero-logo {
+          height:clamp(36px,4.2vw,52px);
+          width:auto; display:block;
+          margin-bottom:clamp(24px,3vw,36px);
+          position:relative; z-index:5;
+          opacity:0; animation:fadeUp 0.7s ease forwards 0.05s;
+          object-fit:contain; object-position:left center;
         }
 
         /* Subtle horizontal scanline sweep */
@@ -330,7 +338,7 @@ export default function Hero() {
           font-family:var(--font-mono); font-size:clamp(0.7rem,2.4vw,1.35rem);
           letter-spacing:0.3em; display:block; margin-bottom:0.1em; color:#F25C43;
         }
-        .hl-stroke { display:block; -webkit-text-stroke:1px rgba(255,255,255,0.16); color:transparent; }
+        .hl-stroke { display:block; -webkit-text-stroke:2px rgba(255,255,255,0.55); color:transparent; filter: drop-shadow(0 0 28px rgba(242,92,67,0.18)); }
 
         .sub-row {
           display:flex; align-items:flex-start; gap:28px;
@@ -382,7 +390,7 @@ export default function Hero() {
         .si { text-align:right; }
         .sn { font-family:var(--font-display); font-size:44px; color:#fff; line-height:1; }
         .sa { color:#F25C43; }
-        .sl { font-family:var(--font-mono); font-size:10px; letter-spacing:0.22em; color:rgba(255,255,255,0.55); text-transform:uppercase; margin-top:4px; }
+        .sl { font-family:var(--font-mono); font-size:10px; letter-spacing:0.22em; color:rgba(255,255,255,0.35); text-transform:uppercase; margin-top:4px; }
         .ss { width:28px; height:2px; background:linear-gradient(to left,#1A2848,transparent); margin-left:auto; margin-top:12px; }
 
         /* Mouse interaction hint — fades in then out */
@@ -401,8 +409,52 @@ export default function Hero() {
           writing-mode:vertical-rl; transform:rotate(180deg); z-index:5;
         }
 
-        @media (max-width:1024px) { .side-stats{display:none} .sprint-lbl{display:none} .hl{font-size:clamp(3rem,10vw,8rem)} }
-        @media (max-width:640px)  { .hero-s{padding:80px 5vw 44px} .sub-row{gap:14px} .mouse-hint{display:none} }
+        @media (max-width:1024px) {
+          .side-stats{display:none}
+          .sprint-lbl{display:none}
+          .hl{font-size:clamp(2.8rem,10vw,8rem)}
+        }
+        @media (max-width:640px) {
+          .side-stats{
+            display:flex !important;
+            position:static; transform:none;
+            flex-direction:row; gap:0;
+            margin-top:clamp(20px,6vw,32px);
+            border-top:1px solid rgba(255,255,255,0.06);
+            padding-top:clamp(16px,5vw,24px);
+            opacity:0; animation:fadeUp 0.8s ease forwards 2.4s;
+          }
+          .si{ text-align:left; flex:1; padding-right:12px; }
+          .si+.si{ border-left:1px solid rgba(255,255,255,0.06); padding-left:12px; padding-right:0; }
+          .sn{ font-size:clamp(26px,9vw,38px); }
+          .sl{ font-size:9px; letter-spacing:0.16em; }
+          .ss{ display:none; }
+        }
+        @media (max-width:640px) {
+          .hero-s{
+            padding-left:5vw; padding-right:5vw;
+            padding-top:clamp(68px,17vw,88px);
+            padding-bottom:calc(44px + 64px);
+            min-height:100svh;
+          }
+          .hero-logo{ height:clamp(28px,8.5vw,40px); margin-bottom:clamp(14px,4vw,22px); }
+          .hl{ font-size:clamp(2.4rem,13.5vw,5rem); margin-bottom:clamp(18px,5vw,28px); }
+          .hl-label{ font-size:clamp(0.6rem,3.2vw,0.85rem); letter-spacing:0.2em; margin-bottom:0.2em; }
+          .sub-row{ gap:14px; margin-bottom:clamp(22px,6vw,32px); max-width:100%; }
+          .sub-text{ font-size:clamp(0.82rem,3.6vw,0.94rem); line-height:1.72; }
+          .sub-line{ height:52px; }
+          .actions{ gap:10px; }
+          .btn-ph{ height:48px; padding:0 20px; font-size:10px; }
+          .btn-gh{ height:48px; padding:0 16px; font-size:10px; }
+          .mouse-hint{display:none}
+          .scan-px{display:none}
+        }
+        @media (max-width:380px) {
+          .hl{ font-size:clamp(2rem,12.5vw,3.6rem); }
+          .hero-logo{ height:clamp(24px,7vw,32px); }
+          .btn-ph,.btn-gh{ width:100%; justify-content:center; }
+          .actions{ flex-direction:column; align-items:stretch; gap:8px; }
+        }
       `}</style>
 
       <Cursor />
@@ -416,6 +468,14 @@ export default function Hero() {
         {/* Navy corner gradient */}
         <div style={{ position:"absolute",top:0,right:0,width:"40%",height:"70%",background:"radial-gradient(ellipse at 100% 0%,rgba(26,40,72,0.22) 0%,transparent 65%)",pointerEvents:"none",zIndex:1 }} />
 
+        {/* Logo */}
+        <img
+          className="hero-logo"
+          src="/logo-trans.png"
+          alt="Ahamed Web Studio"
+          onError={e => { e.currentTarget.style.display = "none"; }}
+        />
+
         {/* Headline */}
         <h1 className="hl">
           <span className="hl-label">{line1}</span>
@@ -427,7 +487,7 @@ export default function Hero() {
         <div className="sub-row">
           <div className="sub-line" />
           <p className="sub-text">
-            The silent execution engine for global design agencies. We take the sites your clients are embarrassed by and rebuild them as world-class Next.js frontends — overnight.
+            The silent execution engine for global design agencies. We take the sites your clients are embarrassed by and rebuild them as world-class Next.js frontends — without the wait.
           </p>
         </div>
 
@@ -440,7 +500,7 @@ export default function Hero() {
           <button className="btn-gh" onClick={() => scrollTo("#portfolio")}>
             Explore The Vault
           </button>
-          <span style={{ fontFamily:"var(--font-mono)",fontSize:10,letterSpacing:"0.2em",color:"rgba(255,255,255,0.5)",display:"flex",alignItems:"center",gap:12 }}>
+          <span style={{ fontFamily:"var(--font-mono)",fontSize:10,letterSpacing:"0.2em",color:"rgba(255,255,255,0.26)",display:"flex",alignItems:"center",gap:12 }}>
             <span style={{ width:26,height:1,display:"inline-block",background:"linear-gradient(to right,#1A2848,rgba(242,92,67,0.35))" }} />
             100% ASYNC EXECUTION
           </span>

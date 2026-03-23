@@ -257,51 +257,6 @@ export default function Navbar() {
         }}
       >
 
-        {/* ── Logo ── */}
-        <a
-          href="#"
-          onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-          style={{
-            display: "flex", alignItems: "center", gap: 10,
-            padding: "14px 16px", flexShrink: 0,
-            textDecoration: "none", overflow: "hidden",
-          }}
-        >
-          <img
-            src="/logo-trans.png"
-            alt="Ahamed Web Studio"
-            style={{ height: 26, width: "auto", flexShrink: 0 }}
-            onError={e => {
-              e.currentTarget.style.display = "none";
-              (e.currentTarget.nextElementSibling as HTMLElement).style.display = "flex";
-            }}
-          />
-          {/* Fallback mark */}
-          <div style={{
-            display: "none", width: 26, height: 26, flexShrink: 0,
-            border: "1px solid rgba(242,92,67,0.5)",
-            background: "rgba(242,92,67,0.08)",
-            alignItems: "center", justifyContent: "center",
-          }}>
-            <span style={{ fontFamily: "var(--font-display)", fontSize: 15, color: "#F25C43", lineHeight: 1 }}>A</span>
-          </div>
-
-          {/* Wordmark — revealed on expand */}
-          <div style={{
-            display: "flex", flexDirection: "column", gap: 1, overflow: "hidden",
-            opacity: expanded ? 1 : 0,
-            transform: expanded ? "translateX(0)" : "translateX(-6px)",
-            transition: "opacity 0.3s ease 0.08s, transform 0.3s ease 0.08s",
-            whiteSpace: "nowrap",
-          }}>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.22em", color: "#fff", fontWeight: 700, lineHeight: 1.2 }}>AHAMED</span>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.22em", color: "rgba(255,255,255,0.45)", lineHeight: 1.2 }}>WEB STUDIO</span>
-          </div>
-        </a>
-
-        {/* Hairline divider */}
-        <div style={{ height: 1, background: "rgba(255,255,255,0.06)", flexShrink: 0, margin: "0 16px" }} />
-
         {/* ── Desktop nav items ── */}
         <div
           className="desktop-only"
