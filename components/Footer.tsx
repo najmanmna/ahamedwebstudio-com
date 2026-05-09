@@ -145,11 +145,11 @@ export default function Footer() {
       href:  "https://linkedin.com/company/ahamed-web-studio",
       Icon:  LinkedInLogo,
     },
-    {
-      label: "Fiverr",
-      href:  "https://www.fiverr.com",
-      Icon:  FiverrLogo,
-    },
+    // {
+    //   label: "Fiverr",
+    //   href:  "https://www.fiverr.com",
+    //   Icon:  FiverrLogo,
+    // },
   ];
 
   return (

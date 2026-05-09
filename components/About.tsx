@@ -13,7 +13,7 @@ function TerminalBio({ active }: { active: boolean }) {
     { text: "$ STACK: NEXT.JS // THREE.JS // WEBGL", delay: 1500, color: "rgba(255,255,255,0.6)"},
     { text: "$ PIPELINE: 100% ASYNC_EXECUTION", delay: 1800, color: "rgba(255,255,255,0.6)" },
     { text: "$ PROJECTS_DEPLOYED: 20+",         delay: 2100, color: "rgba(255,255,255,0.6)" },
-    { text: "$ STATUS: PROVISIONING_APR_2026 █", delay: 2400, color: "#F25C43"              },
+   
   ];
 
   const [visible, setVisible] = useState<number[]>([]);
