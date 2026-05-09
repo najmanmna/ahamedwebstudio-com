@@ -142,7 +142,7 @@ export default function Footer() {
   const SOCIALS = [
     {
       label: "LinkedIn",
-      href:  "https://linkedin.com/company/ahamed-web-studio",
+      href:  "https://www.linkedin.com/in/najman-nizam/",
       Icon:  LinkedInLogo,
     },
     // {
