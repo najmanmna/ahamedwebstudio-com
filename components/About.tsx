@@ -307,7 +307,7 @@ export default function About() {
             {/* Manifesto */}
             <div style={{ borderLeft:"2px solid rgba(26,40,72,0.6)", paddingLeft:24, marginBottom:40 }}>
               <p className="manifesto-p">
-                You inherit slow, bloated WordPress sites. We engineer their replacements. We don't just follow a spec — we look at the legacy constraints your clients are trapped in, decouple the logic, and build the high-performance Next.js architecture your designs actually deserve.
+                You inherit slow, bloated WordPress sites, or you have a pixel-perfect Figma file that regular developers keep breaking. We engineer their replacements. We translate your Figma vision into high-performance Next.js architecture with zero design loss.
               </p>
               <p className="manifesto-p">
                 We operate as the <span className="white-word">silent front-end execution engine</span> for ambitious brands and global design agencies. Legacy CMS platforms become sub-second <span className="accent-word">Next.js frontends</span>. Clunky templates become precision-crafted interfaces. The transformation is complete — and invisible to your clients.

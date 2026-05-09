@@ -14,7 +14,7 @@ const LOGS = [
     entity: "UK Design Agency",
     location: "UK", region: "United Kingdom",
     verified: "AGENCY_PARTNER", rating: 5,
-    content: "Incredible eye for detail and a brilliant designer. The work consistently exceeded what I expected. Would highly recommend — and already have.",
+    content: "We are getting loads of compliments for the sites, people love it and it makes our agency's reputation look incredibly strong.",
     highlight: "consistently exceeded what I expected",
     metric: "ASYNC EXECUTION", project: "Multiple Corporate Frontends", tag: "UK AGENCY",
   },

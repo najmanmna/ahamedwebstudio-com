@@ -119,6 +119,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://api.microlink.io" />
+        {/* Calendly widget styles */}
+        <link rel="preconnect" href="https://assets.calendly.com" />
+        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
       </head>
       <body className="antialiased selection:bg-primary/25 selection:text-white font-sans">
         <SmoothScroll>
