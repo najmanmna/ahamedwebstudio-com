@@ -12,7 +12,7 @@ function TerminalBio({ active }: { active: boolean }) {
     { text: "$ NETWORK: UK // UAE // GLOBAL",   delay: 1200, color: "rgba(255,255,255,0.6)" },
     { text: "$ STACK: NEXT.JS // THREE.JS // WEBGL", delay: 1500, color: "rgba(255,255,255,0.6)"},
     { text: "$ PIPELINE: 100% ASYNC_EXECUTION", delay: 1800, color: "rgba(255,255,255,0.6)" },
-    { text: "$ PROJECTS_DEPLOYED: 15+",         delay: 2100, color: "rgba(255,255,255,0.6)" },
+    { text: "$ PROJECTS_DEPLOYED: 20+",         delay: 2100, color: "rgba(255,255,255,0.6)" },
     { text: "$ STATUS: PROVISIONING_APR_2026 █", delay: 2400, color: "#F25C43"              },
   ];
 
@@ -39,10 +39,10 @@ function TerminalBio({ active }: { active: boolean }) {
         </span>
       </div>
 
-      <div style={{ padding: "16px 20px" }}>
+        <div style={{ padding: "16px 20px" }}>
         {LINES.map((line, i) => (
           <div key={i} style={{
-            fontFamily: "var(--font-mono)", fontSize: 10, lineHeight: 1.9,
+            fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 1.9,
             color: line.color, letterSpacing: "0.06em",
             opacity: visible.includes(i) ? 1 : 0,
             transform: visible.includes(i) ? "translateY(0)" : "translateY(4px)",
@@ -98,7 +98,7 @@ function ArchitectFrame() {
 
       <div style={{ position:"absolute", inset:0, background:"rgba(255,255,255,0.02)", border:"1px solid rgba(255,255,255,0.07)", overflow:"hidden" }}>
         <img
-          src="/architect.jpeg"
+          src="/najman.png"
           alt="Ahamed Najman"
           style={{ width:"100%", height:"100%", objectFit:"cover", filter:"grayscale(55%) contrast(1.1)" }}
           onError={e => { e.currentTarget.style.display="none"; }}
@@ -152,8 +152,8 @@ function StatBar({ label, value, max, unit, active, delay }: { label: string; va
   return (
     <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
       <div style={{ display:"flex", justifyContent:"space-between" }}>
-        <span style={{ fontFamily:"var(--font-mono)", fontSize:10, letterSpacing:"0.18em", color:"rgba(255,255,255,0.5)", textTransform:"uppercase" }}>{label}</span>
-        <span style={{ fontFamily:"var(--font-mono)", fontSize:10, color:"#F25C43", letterSpacing:"0.1em" }}>{value}{unit}</span>
+        <span style={{ fontFamily:"var(--font-mono)", fontSize:11, letterSpacing:"0.18em", color:"rgba(255,255,255,0.5)", textTransform:"uppercase" }}>{label}</span>
+        <span style={{ fontFamily:"var(--font-mono)", fontSize:11, color:"#F25C43", letterSpacing:"0.1em" }}>{value}{unit}</span>
       </div>
       <div style={{ height:2, background:"rgba(255,255,255,0.05)", position:"relative", overflow:"hidden" }}>
         <div style={{
@@ -200,7 +200,7 @@ export default function About() {
 
         .manifesto-p {
           font-family:var(--font-sans);
-          font-size:15px; font-weight:300;
+          font-size:16px; font-weight:300;
           color:rgba(255,255,255,0.62);
           line-height:1.85; letter-spacing:0.02em;
         }
@@ -234,7 +234,7 @@ export default function About() {
         }
         @media (max-width:640px) {
           .about-headline { font-size:clamp(2.4rem,11vw,4rem) !important; }
-          .manifesto-p    { font-size:14px !important; }
+          .manifesto-p    { font-size:15px !important; }
           .net-tags       { flex-direction:column !important; }
         }
       `}</style>
@@ -279,7 +279,7 @@ export default function About() {
               padding:"5px 12px",
               border:"1px solid rgba(255,255,255,0.07)",
               background:"rgba(255,255,255,0.02)",
-              fontFamily:"var(--font-mono)", fontSize:10, letterSpacing:"0.3em",
+              fontFamily:"var(--font-mono)", fontSize:11, letterSpacing:"0.3em",
               color:"#F25C43", textTransform:"uppercase", marginBottom:28,
             }}>
               <span style={{ width:5, height:5, borderRadius:"50%", background:"#F25C43", display:"inline-block", animation:"blink 2s ease infinite" }} />
@@ -324,7 +324,7 @@ export default function About() {
               padding:"24px", marginBottom:24,
               display:"flex", flexDirection:"column", gap:16,
             }}>
-              <div style={{ fontFamily:"var(--font-mono)", fontSize:9, letterSpacing:"0.28em", color:"rgba(255,255,255,0.35)", marginBottom:4, textTransform:"uppercase" }}>
+              <div style={{ fontFamily:"var(--font-mono)", fontSize:11, letterSpacing:"0.28em", color:"rgba(255,255,255,0.35)", marginBottom:4, textTransform:"uppercase" }}>
                 SYSTEM_METRICS // LIVE_BENCHMARKS
               </div>
               <StatBar label="PageSpeed Score"     value={100} max={100} unit="/100" active={entered} delay={400}  />
@@ -345,10 +345,10 @@ export default function About() {
                   border:"1px solid rgba(255,255,255,0.06)",
                   borderTop:`2px solid ${i===0 ? "rgba(242,92,67,0.4)" : "rgba(26,40,72,0.6)"}`,
                 }}>
-                  <div style={{ fontFamily:"var(--font-mono)", fontSize:9, color: i===0?"#F25C43":"rgba(26,40,72,0.9)", letterSpacing:"0.2em", marginBottom:6, filter: i===1?"brightness(3)":"none" }}>
+                  <div style={{ fontFamily:"var(--font-mono)", fontSize:11, color: i===0?"#F25C43":"rgba(26,40,72,0.9)", letterSpacing:"0.2em", marginBottom:6, filter: i===1?"brightness(3)":"none" }}>
                     {item.label}
                   </div>
-                  <div style={{ fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,0.6)", letterSpacing:"0.1em" }}>
+                  <div style={{ fontFamily:"var(--font-mono)", fontSize:11, color:"rgba(255,255,255,0.6)", letterSpacing:"0.1em" }}>
                     {item.value}
                   </div>
                 </div>

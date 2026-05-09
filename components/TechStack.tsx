@@ -286,7 +286,7 @@ export default function TechStack() {
         .ts-item.active         { background: rgba(242,92,67,0.04); }
 
         .ts-tag {
-          font-family: var(--font-mono); font-size: 9px;
+          font-family: var(--font-mono); font-size: 11px;
           letter-spacing: 0.22em; color: rgba(255,255,255,0.35);
           text-transform: uppercase; transition: color 0.3s;
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -302,7 +302,7 @@ export default function TechStack() {
         }
 
         .ts-name {
-          font-family: var(--font-mono); font-size: 10px;
+          font-family: var(--font-mono); font-size: 11px;
           letter-spacing: 0.1em; color: rgba(255,255,255,0.65);
           text-transform: uppercase; transition: color 0.3s;
         }
@@ -321,8 +321,8 @@ export default function TechStack() {
         @media (max-width: 640px) {
           .ts-grid     { grid-template-columns: repeat(2, 1fr) !important; }
           .ts-item     { padding: 16px 14px; min-height: 80px; }
-          .ts-tag      { font-size: 8px; letter-spacing: 0.16em; }
-          .ts-name     { font-size: 9px; }
+          .ts-tag      { font-size: 10px; letter-spacing: 0.16em; }
+          .ts-name     { font-size: 11px; }
         }
         @media (max-width: 380px) {
           .ts-grid     { grid-template-columns: repeat(2, 1fr) !important; }
@@ -356,11 +356,11 @@ export default function TechStack() {
           transition: "opacity 0.6s ease, transform 0.6s ease",
           flexWrap: "wrap", gap: 12,
         }}>
-          <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.32em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", whiteSpace: "nowrap" }}>
+          <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.32em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", whiteSpace: "nowrap" }}>
             <span style={{ color: "#F25C43" }}>◆</span> CORE_INFRASTRUCTURE // SYSTEM_MODULES
           </div>
           <div style={{ flex: 1, minWidth: 40, height: 1, background: "linear-gradient(to right, rgba(242,92,67,0.35), rgba(26,40,72,0.2), transparent)" }} />
-          <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.22em", color: "rgba(255,255,255,0.28)", whiteSpace: "nowrap" }}>
+          <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.22em", color: "rgba(255,255,255,0.28)", whiteSpace: "nowrap" }}>
             {STACK.length} MODULES_LOADED
           </div>
         </div>
@@ -418,7 +418,7 @@ export default function TechStack() {
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.2em", color: "#F25C43", textTransform: "uppercase", marginBottom: 20 }}>
               {active.tag} // {active.version}
             </div>
-            <div style={{ fontFamily: "var(--font-sans)", fontSize: 13, fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.75, letterSpacing: "0.02em" }}>
+            <div style={{ fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.75, letterSpacing: "0.02em" }}>
               {active.desc}
             </div>
             {/* Progress bar */}
@@ -426,7 +426,7 @@ export default function TechStack() {
               <div style={{ height: "100%", width: `${fill}%`, background: "linear-gradient(to right, #1A2848, #F25C43)", transition: "width 0.7s cubic-bezier(0.76,0,0.24,1)" }} />
               <div style={{ position: "absolute", top: 0, bottom: 0, width: 60, background: "linear-gradient(to right, transparent, rgba(242,92,67,0.35), transparent)", animation: "scanH 2s ease infinite" }} />
             </div>
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "rgba(255,255,255,0.28)", letterSpacing: "0.2em", marginTop: 14 }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "rgba(255,255,255,0.28)", letterSpacing: "0.2em", marginTop: 14 }}>
               MODULE {String(activeIndex + 1).padStart(2, "0")} / {String(STACK.length).padStart(2, "0")}
             </div>
           </div>
@@ -438,7 +438,7 @@ export default function TechStack() {
               display: "inline-flex", alignItems: "center", gap: 8,
               padding: "7px 14px", border: "1px solid rgba(242,92,67,0.2)",
               background: "rgba(242,92,67,0.05)", fontFamily: "var(--font-mono)",
-              fontSize: 10, letterSpacing: "0.2em", color: "#F25C43",
+              fontSize: 11, letterSpacing: "0.2em", color: "#F25C43",
               alignSelf: "flex-start", marginTop: 24,
             }}>
               <span style={{ width: 5, height: 5, background: "#F25C43", borderRadius: "50%", display: "inline-block" }} />
@@ -464,7 +464,7 @@ export default function TechStack() {
                 style={{
                   position: "absolute", top: 14, right: 16,
                   background: "none", border: "none", cursor: "pointer",
-                  fontFamily: "var(--font-mono)", fontSize: 9,
+                  fontFamily: "var(--font-mono)", fontSize: 11,
                   letterSpacing: "0.14em", color: "rgba(255,255,255,0.3)",
                   padding: "4px 8px",
                   borderLeft: "1px solid rgba(255,255,255,0.08)",
@@ -478,7 +478,7 @@ export default function TechStack() {
                 {["#F25C43","rgba(26,40,72,0.8)","rgba(255,255,255,0.07)"].map((c,i) => (
                   <div key={i} style={{ width:8,height:8,borderRadius:"50%",background:c }} />
                 ))}
-                <span style={{ fontFamily:"var(--font-mono)",fontSize:9,color:"rgba(255,255,255,0.25)",letterSpacing:"0.16em",marginLeft:8 }}>
+                <span style={{ fontFamily:"var(--font-mono)",fontSize:11,color:"rgba(255,255,255,0.25)",letterSpacing:"0.16em",marginLeft:8 }}>
                   MODULE_READOUT.log
                 </span>
               </div>
@@ -490,7 +490,7 @@ export default function TechStack() {
                     <div style={{ fontFamily: "var(--font-display)", fontSize: 36, color: "#fff", letterSpacing: "0.03em", lineHeight: 1, marginBottom: 4 }}>
                       {active.name}
                     </div>
-                    <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "#F25C43", letterSpacing: "0.18em" }}>
+                    <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "#F25C43", letterSpacing: "0.18em" }}>
                       {active.tag} // {active.version}
                     </div>
                   </div>
@@ -503,7 +503,7 @@ export default function TechStack() {
                 <div style={{ height: 1, background: "linear-gradient(to right, #1A2848, rgba(242,92,67,0.3), transparent)" }} />
 
                 {/* Description */}
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.75, margin: 0 }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.75, margin: 0 }}>
                   {active.desc}
                 </p>
 
@@ -513,7 +513,7 @@ export default function TechStack() {
                     display: "inline-flex", alignItems: "center", gap: 7,
                     padding: "6px 14px", border: "1px solid rgba(242,92,67,0.2)",
                     background: "rgba(242,92,67,0.05)", fontFamily: "var(--font-mono)",
-                    fontSize: 9, letterSpacing: "0.16em", color: "#F25C43",
+                    fontSize: 11, letterSpacing: "0.16em", color: "#F25C43",
                   }}>
                     <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#F25C43", display: "inline-block" }} />
                     {active.metric}
@@ -522,7 +522,7 @@ export default function TechStack() {
                     display: "inline-flex", alignItems: "center", gap: 7,
                     padding: "6px 14px", border: "1px solid rgba(26,40,72,0.4)",
                     background: "rgba(26,40,72,0.1)", fontFamily: "var(--font-mono)",
-                    fontSize: 9, letterSpacing: "0.14em", color: "rgba(255,255,255,0.3)",
+                    fontSize: 11, letterSpacing: "0.14em", color: "rgba(255,255,255,0.3)",
                   }}>
                     MODULE {String(activeIndex + 1).padStart(2,"0")} / {String(STACK.length).padStart(2,"0")}
                   </div>
@@ -545,7 +545,7 @@ export default function TechStack() {
           {!panelOpen && (
             <div style={{
               marginTop: 8, textAlign: "center",
-              fontFamily: "var(--font-mono)", fontSize: 8,
+              fontFamily: "var(--font-mono)", fontSize: 11,
               letterSpacing: "0.2em", color: "rgba(255,255,255,0.2)",
               padding: "10px 0",
             }}>

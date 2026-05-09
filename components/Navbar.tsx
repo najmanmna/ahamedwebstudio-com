@@ -353,7 +353,7 @@ export default function Navbar() {
               animation: "blink 2s ease infinite", display: "inline-block",
             }} />
             <span style={{
-              fontFamily: "var(--font-mono)", fontSize: 9,
+              fontFamily: "var(--font-mono)", fontSize: 11,
               letterSpacing: "0.18em", color: "rgba(255,255,255,0.4)",
               opacity: expanded ? 1 : 0,
               transition: "opacity 0.25s ease 0.12s",

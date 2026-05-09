@@ -91,14 +91,14 @@ function SelectorCard({ log, isActive, onClick, index, entered }: { log: Log; is
           overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
           transition: "color 0.3s",
         }}>{log.name.toUpperCase()}</div>
-        <div style={{ fontFamily: "var(--font-mono)", fontSize: 8, letterSpacing: "0.12em", color: "rgba(255,255,255,0.2)" }}>
+        <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.12em", color: "rgba(255,255,255,0.2)" }}>
           {log.entity} · {log.region}
         </div>
       </div>
       <div style={{
         padding: "2px 6px",
         border: `1px solid ${isActive ? "rgba(242,92,67,0.2)" : "rgba(26,40,72,0.35)"}`,
-        fontFamily: "var(--font-mono)", fontSize: 7,
+        fontFamily: "var(--font-mono)", fontSize: 10,
         letterSpacing: "0.16em",
         color: isActive ? "#F25C43" : "rgba(255,255,255,0.15)",
         transition: "all 0.3s", flexShrink: 0,
@@ -228,7 +228,7 @@ export default function Testimonials() {
           transition: "opacity 0.7s ease, transform 0.7s ease",
         }}>
           <div>
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.3em", color: "#F25C43", marginBottom: 14, display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.3em", color: "#F25C43", marginBottom: 14, display: "flex", alignItems: "center", gap: 8 }}>
               <span style={{ width: 5, height: 5, background: "#F25C43", borderRadius: "50%", display: "inline-block", animation: "blink 2s ease infinite" }} />
               SYSTEM_VALIDATION // VERIFIED_IMPACT_LOGS
             </div>
@@ -239,7 +239,7 @@ export default function Testimonials() {
             </h2>
           </div>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.2em", color: "rgba(255,255,255,0.2)" }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.2em", color: "rgba(255,255,255,0.2)" }}>
               {String(active + 1).padStart(2, "0")} / {String(LOGS.length).padStart(2, "0")}
             </div>
             <div style={{
@@ -247,7 +247,7 @@ export default function Testimonials() {
               padding: "5px 12px",
               border: "1px solid rgba(26,40,72,0.4)",
               background: "rgba(26,40,72,0.1)",
-              fontFamily: "var(--font-mono)", fontSize: 9, letterSpacing: "0.14em",
+              fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.14em",
               color: "rgba(255,255,255,0.3)",
             }}>
               <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#F25C43", animation: "blink 2s ease infinite", display: "inline-block" }} />
@@ -304,7 +304,7 @@ export default function Testimonials() {
                     <div className="val-author-name" style={{ fontFamily: "var(--font-display)", fontSize: 24, color: "#fff", letterSpacing: "0.04em", lineHeight: 1 }}>
                       {log.name.toUpperCase()}
                     </div>
-                    <div style={{ fontFamily: "var(--font-mono)", fontSize: 9, letterSpacing: "0.14em", color: "rgba(255,255,255,0.35)", marginTop: 5 }}>
+                    <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.14em", color: "rgba(255,255,255,0.35)", marginTop: 5 }}>
                       {log.entity} · {log.region} · {log.verified}
                     </div>
                   </div>
@@ -366,7 +366,7 @@ export default function Testimonials() {
                 <div style={{
                   display: "flex", alignItems: "center", gap: 7, padding: "7px 14px",
                   border: "1px solid rgba(242,92,67,0.2)", background: "rgba(242,92,67,0.04)",
-                  fontFamily: "var(--font-mono)", fontSize: 9, letterSpacing: "0.16em", color: "#F25C43",
+                  fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.16em", color: "#F25C43",
                 }}>
                   <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#F25C43", display: "inline-block" }} />
                   {log.metric}
@@ -374,7 +374,7 @@ export default function Testimonials() {
                 <div style={{
                   display: "flex", alignItems: "center", gap: 7, padding: "7px 14px",
                   border: "1px solid rgba(26,40,72,0.4)", background: "rgba(26,40,72,0.1)",
-                  fontFamily: "var(--font-mono)", fontSize: 9, letterSpacing: "0.14em", color: "rgba(255,255,255,0.3)",
+                  fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.14em", color: "rgba(255,255,255,0.3)",
                 }}>
                   {log.project.toUpperCase()}
                 </div>
@@ -405,8 +405,8 @@ export default function Testimonials() {
                 padding: "11px 16px",
                 background: "rgba(26,40,72,0.12)",
                 border: "1px solid rgba(26,40,72,0.3)",
-                fontFamily: "var(--font-mono)", fontSize: 8, letterSpacing: "0.22em",
-                color: "rgba(255,255,255,0.2)", flexShrink: 0,
+              fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.22em",
+              color: "rgba(255,255,255,0.2)", flexShrink: 0,
               }}
             >
               SIGNAL_INDEX // {LOGS.length} ENTRIES
@@ -434,10 +434,10 @@ export default function Testimonials() {
                 opacity: 0.4, marginTop: 2, flexShrink: 0,
               }}
             >
-              <div style={{ fontFamily: "var(--font-mono)", fontSize: 8, letterSpacing: "0.16em", color: "rgba(255,255,255,0.2)", marginBottom: 3 }}>
+              <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.16em", color: "rgba(255,255,255,0.2)", marginBottom: 3 }}>
                 UK_AGENCY // PENDING
               </div>
-              <div style={{ fontFamily: "var(--font-mono)", fontSize: 9, letterSpacing: "0.1em", color: "rgba(255,255,255,0.15)" }}>
+              <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.1em", color: "rgba(255,255,255,0.15)" }}>
                 LOG_05 // INCOMING...
               </div>
             </div>

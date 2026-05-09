@@ -273,8 +273,8 @@ function Ticker() {
       <div style={{ position:"absolute",left:0,top:0,bottom:0,width:80,background:"linear-gradient(to right,#030303,transparent)",zIndex:1,pointerEvents:"none" }} />
       <div style={{ position:"absolute",right:0,top:0,bottom:0,width:80,background:"linear-gradient(to left,#030303,transparent)",zIndex:1,pointerEvents:"none" }} />
       <div style={{ display:"flex",animation:"tickerScroll 42s linear infinite",whiteSpace:"nowrap" }}>
-        {items.map((item,i) => (
-          <span key={i} style={{ fontFamily:"var(--font-mono)",fontSize:10,letterSpacing:"0.25em",paddingRight:48,
+            {items.map((item,i) => (
+          <span key={i} style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.25em",paddingRight:48,
             color: i%2===0 ? "rgba(255,255,255,0.25)" : (Math.floor(i/2)%2===0 ? "#F25C43" : "rgba(26,40,72,0.85)") }}>
             {i%2===0 ? item : "◆"}
           </span>
@@ -351,7 +351,7 @@ export default function Hero() {
           background:linear-gradient(to bottom,#F25C43,rgba(26,40,72,0.25));
         }
         .sub-text {
-          font-family:var(--font-sans); font-size:clamp(0.875rem,1.5vw,1rem);
+          font-family:var(--font-sans); font-size:clamp(0.9375rem,1.5vw,1.0625rem);
           font-weight:300; line-height:1.82; color:rgba(255,255,255,0.62); letter-spacing:0.02em;
         }
 
@@ -390,7 +390,7 @@ export default function Hero() {
         .si { text-align:right; }
         .sn { font-family:var(--font-display); font-size:44px; color:#fff; line-height:1; }
         .sa { color:#F25C43; }
-        .sl { font-family:var(--font-mono); font-size:10px; letter-spacing:0.22em; color:rgba(255,255,255,0.35); text-transform:uppercase; margin-top:4px; }
+        .sl { font-family:var(--font-mono); font-size:11px; letter-spacing:0.22em; color:rgba(255,255,255,0.35); text-transform:uppercase; margin-top:4px; }
         .ss { width:28px; height:2px; background:linear-gradient(to left,#1A2848,transparent); margin-left:auto; margin-top:12px; }
 
         /* Mouse interaction hint — fades in then out */
@@ -500,7 +500,7 @@ export default function Hero() {
           <button className="btn-gh" onClick={() => scrollTo("#portfolio")}>
             Explore The Vault
           </button>
-          <span style={{ fontFamily:"var(--font-mono)",fontSize:10,letterSpacing:"0.2em",color:"rgba(255,255,255,0.26)",display:"flex",alignItems:"center",gap:12 }}>
+          <span style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.2em",color:"rgba(255,255,255,0.26)",display:"flex",alignItems:"center",gap:12 }}>
             <span style={{ width:26,height:1,display:"inline-block",background:"linear-gradient(to right,#1A2848,rgba(242,92,67,0.35))" }} />
             100% ASYNC EXECUTION
           </span>
@@ -508,7 +508,7 @@ export default function Hero() {
 
         {/* Side stats */}
         <div className="side-stats">
-          {[{n:"15",a:"+",l:"Projects Deployed"},{n:"<1",a:"s",l:"Load Time"},{n:"100",a:"",l:"PageSpeed"}].map((s,i) => (
+          {[{n:"20",a:"+",l:"Projects Deployed"},{n:"<1",a:"s",l:"Load Time"},{n:"100",a:"",l:"PageSpeed"}].map((s,i) => (
             <div key={i} className="si">
               <div className="sn">{s.n}<span className="sa">{s.a}</span></div>
               <div className="sl">{s.l}</div>

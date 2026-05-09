@@ -106,7 +106,7 @@ const CORPORATE: Project[] = [
     id: "08", cat: "HOSPITALITY",
     client: "UK Hospitality Client", type: "Premium Hospitality",
     year: "2026", location: "United Kingdom",
-    url: "https://theharleylounge.vercel.app",
+    url: "https://theharleylounge.com",
     metric: "↑↑", metricLabel: "Transformation",
     palette: ["#6B1A1A", "#3D0D0D", "#FFD0D0"],
     tags: ["Hospitality", "Luxury", "WordPress→Next.js"],
@@ -255,7 +255,7 @@ function ProjectTab({ project, isActive, onClick, revealed }: { project: Project
     >
       {/* ID */}
       <span style={{
-        fontFamily: "var(--font-mono)", fontSize: 9,
+        fontFamily: "var(--font-mono)", fontSize: 11,
         color: isActive ? "#F25C43" : "rgba(255,255,255,0.2)",
         letterSpacing: "0.14em", flexShrink: 0, minWidth: 20,
         transition: "color 0.3s",
@@ -264,7 +264,7 @@ function ProjectTab({ project, isActive, onClick, revealed }: { project: Project
       {/* Name */}
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{
-          fontFamily: "var(--font-display)", fontSize: 13,
+          fontFamily: "var(--font-display)", fontSize: 15,
           color: isActive ? "#fff" : "rgba(255,255,255,0.4)",
           letterSpacing: "0.04em",
           overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
@@ -274,7 +274,7 @@ function ProjectTab({ project, isActive, onClick, revealed }: { project: Project
           {isLocked ? "████████████" : project.client.toUpperCase()}
         </div>
         <div style={{
-          fontFamily: "var(--font-mono)", fontSize: 8,
+          fontFamily: "var(--font-mono)", fontSize: 11,
           color: isActive ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.18)",
           letterSpacing: "0.1em", marginTop: 1,
         }}>{project.cat}</div>
@@ -290,7 +290,7 @@ function ProjectTab({ project, isActive, onClick, revealed }: { project: Project
       {/* Metric */}
       {!isLocked && (
         <span className="vault-tab-metric" style={{
-          fontFamily: "var(--font-mono)", fontSize: 9,
+          fontFamily: "var(--font-mono)", fontSize: 11,
           color: isActive ? "#F25C43" : "rgba(255,255,255,0.2)",
           letterSpacing: "0.1em", flexShrink: 0,
           transition: "color 0.3s",
@@ -379,6 +379,7 @@ export default function Portfolio() {
         @keyframes pulse      { 0%,100%{opacity:1} 50%{opacity:0.3} }
         @keyframes navyBreath { 0%,100%{opacity:0.2} 50%{opacity:0.5} }
         @keyframes blink      { 0%,100%{opacity:1} 50%{opacity:0} }
+        @keyframes corporatePulse { 0%,100%{box-shadow:0 0 0 0 rgba(242,92,67,0.0)} 50%{box-shadow:0 0 14px 3px rgba(242,92,67,0.25)} }
         /* ── MOBILE OVERHAUL ── */
 
         /* Tablet — stack browser above detail */
@@ -416,6 +417,9 @@ export default function Portfolio() {
           .vault-browser { min-height: 170px !important; }
           .vault-tab     { min-width: 80px !important; }
         }
+        @media (max-width: 640px) {
+          .vault-teaser-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
       `}</style>
 
       <section
@@ -447,11 +451,11 @@ export default function Portfolio() {
           transition: "opacity 0.7s ease, transform 0.7s ease",
         }}>
           <div>
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.3em", color: "#F25C43", marginBottom: 14, display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.3em", color: "#F25C43", marginBottom: 14, display: "flex", alignItems: "center", gap: 8 }}>
               <span style={{ width: 5, height: 5, background: "#F25C43", borderRadius: "50%", display: "inline-block" }} />
               DATA_NODES // DEPLOYMENT_LOG
             </div>
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3rem,8vw,7rem)", color: "#fff", lineHeight: 0.9, textTransform: "uppercase" }}>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.2rem,8vw,7rem)", color: "#fff", lineHeight: 0.9, textTransform: "uppercase" }}>
               THE<br />
               <span style={{ WebkitTextStroke: "2px rgba(255,255,255,0.7)", color: "transparent", filter: "drop-shadow(0 0 18px rgba(255,255,255,0.12))" }}>VAULT.</span>
             </h2>
@@ -467,10 +471,10 @@ export default function Portfolio() {
               transition: "left 0.4s cubic-bezier(0.76,0,0.24,1), background 0.4s",
             }} />
             {[
-              { key: "retail", label: "Retail" },
-              { key: "corporate", label: "Corporate" },
+              { key: "retail", label: "Retail", count: RETAIL.length, tooltip: "Client projects" },
+              { key: "corporate", label: "Corporate", count: CORPORATE.length, tooltip: "White-label & NDA projects" },
             ].map(t => (
-              <button key={t.key} onClick={() => switchSection(t.key)} style={{
+              <button key={t.key} onClick={() => switchSection(t.key)} title={t.tooltip} style={{
                 padding: "0 24px", height: 44,
                 fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.2em",
                 textTransform: "uppercase", border: "none", background: "transparent",
@@ -479,13 +483,26 @@ export default function Portfolio() {
                 display: "flex", alignItems: "center", gap: 8,
                 position: "relative", zIndex: 2, whiteSpace: "nowrap",
                 transition: "color 0.3s",
+                animation: (t.key === "corporate" && section === "retail") ? "corporatePulse 2.5s ease-in-out infinite" : "none",
               }}>
                 {t.key === "corporate" && (
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                    style={{
+                      filter: section === "retail" ? "drop-shadow(0 0 4px rgba(242,92,67,0.7))" : "none",
+                      transition: "filter 0.3s",
+                    }}>
                     {revealed ? <><rect x="3" y="11" width="18" height="11" rx="1"/><path d="M7 11V7a5 5 0 0110 0"/></> : <><rect x="3" y="11" width="18" height="11" rx="1"/><path d="M7 11V7a5 5 0 0110 0v4"/></>}
                   </svg>
                 )}
                 {t.label}
+                <span style={{
+                  fontFamily: "var(--font-mono)", fontSize: 8,
+                  color: section === t.key
+                    ? (t.key === "corporate" ? "rgba(242,92,67,0.7)" : "rgba(255,255,255,0.4)")
+                    : "rgba(255,255,255,0.2)",
+                  letterSpacing: "0.1em",
+                  transition: "color 0.3s",
+                }}>({t.count})</span>
               </button>
             ))}
           </div>
@@ -563,11 +580,11 @@ export default function Portfolio() {
                   </div>
 
                   <div style={{ textAlign: "center", zIndex: 1 }}>
-                    <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.25em", color: isHolding ? "#F25C43" : "rgba(255,255,255,0.6)", marginBottom: 6 }}>
+                    <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, letterSpacing: "0.25em", color: isHolding ? "#F25C43" : "rgba(255,255,255,0.6)", marginBottom: 6 }}>
                       {isHolding ? `DECRYPTING ${Math.round(progress)}%` : "NDA RESTRICTED"}
                     </div>
                     {!isHolding && (
-                      <div style={{ fontFamily: "var(--font-mono)", fontSize: 9, letterSpacing: "0.2em", color: "rgba(255,255,255,0.28)", animation: "pulse 2.5s ease infinite" }}>
+                      <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.2em", color: "rgba(255,255,255,0.28)", animation: "pulse 2.5s ease infinite" }}>
                         HOLD TO DECRYPT
                       </div>
                     )}
@@ -599,7 +616,7 @@ export default function Portfolio() {
                     padding: "3px 9px",
                     border: `1px solid ${project.palette[0]}33`,
                     background: `${project.palette[0]}0D`,
-                    fontFamily: "var(--font-mono)", fontSize: 8,
+                    fontFamily: "var(--font-mono)", fontSize: 10,
                     letterSpacing: "0.14em", color: project.palette[0],
                     textTransform: "uppercase",
                   }}>{t}</span>
@@ -612,7 +629,7 @@ export default function Portfolio() {
                     display: "flex", alignItems: "center", gap: 6,
                     padding: "6px 14px",
                     background: project.palette[0],
-                    fontFamily: "var(--font-mono)", fontSize: 9, letterSpacing: "0.14em",
+                    fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.14em",
                     color: "#fff", textDecoration: "none",
                     transition: "opacity 0.2s",
                     clipPath: "polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%)",
@@ -625,12 +642,12 @@ export default function Portfolio() {
                 </a>
               )}
               {isLocked && (
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: 9, letterSpacing: "0.14em", color: "rgba(255,255,255,0.2)" }}>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.14em", color: "rgba(255,255,255,0.2)" }}>
                   {revealed ? "DECRYPTED" : "NDA // HOLD BROWSER TO DECRYPT"}
                 </span>
               )}
               {project.noLink && !isLocked && (
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: 9, letterSpacing: "0.14em", color: "rgba(255,255,255,0.2)" }}>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.14em", color: "rgba(255,255,255,0.2)" }}>
                   RESTRICTED
                 </span>
               )}
@@ -658,13 +675,13 @@ export default function Portfolio() {
                 display: "flex", alignItems: "center", gap: 6, paddingInline: 14,
               }}>
                 {["#F25C43","rgba(26,40,72,0.8)","rgba(255,255,255,0.07)"].map((c,i) => <div key={i} style={{ width:7,height:7,borderRadius:"50%",background:c }} />)}
-                <span style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.18em",color:"rgba(255,255,255,0.25)",marginLeft:6 }}>
+                <span style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.18em",color:"rgba(255,255,255,0.25)",marginLeft:6 }}>
                   PROJECT_READOUT.log
                 </span>
                 {/* Pulsing dot */}
                 <div style={{ marginLeft:"auto",display:"flex",alignItems:"center",gap:5 }}>
                   <div style={{ width:5,height:5,borderRadius:"50%",background:"#F25C43",animation:"blink 2s ease infinite" }} />
-                  <span style={{ fontFamily:"var(--font-mono)",fontSize:8,letterSpacing:"0.14em",color:"rgba(255,255,255,0.2)" }}>LIVE</span>
+                  <span style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.14em",color:"rgba(255,255,255,0.2)" }}>LIVE</span>
                 </div>
               </div>
 
@@ -678,7 +695,7 @@ export default function Portfolio() {
               }}>
                 {/* Header */}
                 <div>
-                  <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.2em",color:"rgba(255,255,255,0.3)",marginBottom:8 }}>
+                  <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.2em",color:"rgba(255,255,255,0.3)",marginBottom:8 }}>
                     {project.id} · {project.year} · {project.location}
                   </div>
                   <h3 className="vault-h3" style={{
@@ -690,7 +707,7 @@ export default function Portfolio() {
                   }}>
                     {isLocked ? "███████████████" : project.client.toUpperCase()}
                   </h3>
-                  <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.14em",color:"rgba(255,255,255,0.35)" }}>
+                  <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.14em",color:"rgba(255,255,255,0.35)" }}>
                     {project.type}
                   </div>
                 </div>
@@ -704,7 +721,7 @@ export default function Portfolio() {
                   width:"fit-content",
                 }}>
                   <span className="vault-metric-num" style={{ fontFamily:"var(--font-display)",fontSize:28,color:project.palette[0],lineHeight:1 }}>{project.metric}</span>
-                  <span style={{ fontFamily:"var(--font-mono)",fontSize:8,letterSpacing:"0.16em",color:"rgba(255,255,255,0.35)",textTransform:"uppercase" }}>{project.metricLabel}</span>
+                  <span style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.16em",color:"rgba(255,255,255,0.35)",textTransform:"uppercase" }}>{project.metricLabel}</span>
                 </div>
 
                 {/* Story */}
@@ -715,10 +732,10 @@ export default function Portfolio() {
                   filter: isLocked ? "blur(4px)" : "none",
                   transition:"opacity 0.4s, filter 0.4s",
                 }}>
-                  <p style={{ fontFamily:"var(--font-sans)",fontSize:13,fontWeight:300,color:"rgba(255,255,255,0.6)",lineHeight:1.75,marginBottom:10 }}>
+                  <p style={{ fontFamily:"var(--font-sans)",fontSize:15,fontWeight:300,color:"rgba(255,255,255,0.6)",lineHeight:1.75,marginBottom:10 }}>
                     {project.story}
                   </p>
-                  <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.14em",color:"#F25C43" }}>
+                  <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.14em",color:"#F25C43" }}>
                     → {project.result}
                   </div>
                 </div>
@@ -726,10 +743,10 @@ export default function Portfolio() {
                 {/* Quote */}
                 {!isLocked && (
                   <div className="vault-quote" style={{ paddingTop:12, borderTop:"1px solid rgba(255,255,255,0.05)" }}>
-                    <p style={{ fontFamily:"var(--font-sans)",fontSize:12,fontWeight:300,color:"rgba(255,255,255,0.5)",lineHeight:1.7,fontStyle:"italic",marginBottom:6 }}>
+                    <p style={{ fontFamily:"var(--font-sans)",fontSize:14,fontWeight:300,color:"rgba(255,255,255,0.5)",lineHeight:1.7,fontStyle:"italic",marginBottom:6 }}>
                       "{project.quote.text}"
                     </p>
-                    <span style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.12em",color:"rgba(255,255,255,0.3)" }}>
+                    <span style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.12em",color:"rgba(255,255,255,0.3)" }}>
                       — {project.quote.author}
                     </span>
                   </div>
@@ -743,7 +760,7 @@ export default function Portfolio() {
               border: "1px solid rgba(255,255,255,0.06)",
               flexShrink: 0,
             }}>
-              <div className="vault-selector-header" style={{ padding:"9px 14px", borderBottom:"1px solid rgba(255,255,255,0.04)", fontFamily:"var(--font-mono)",fontSize:8,letterSpacing:"0.22em",color:"rgba(255,255,255,0.2)" }}>
+              <div className="vault-selector-header" style={{ padding:"9px 14px", borderBottom:"1px solid rgba(255,255,255,0.04)", fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.22em",color:"rgba(255,255,255,0.2)" }}>
                 {section === "retail" ? `RETAIL_INDEX // ${RETAIL.length} PROJECTS` : `CORPORATE_VAULT // ${CORPORATE.length} PROJECTS`}
               </div>
               <div className="vault-selector" style={{ display:"flex", flexDirection:"column" }}>
@@ -762,7 +779,7 @@ export default function Portfolio() {
                 <div style={{
                   padding:"9px 14px",
                   borderTop:"1px solid rgba(255,255,255,0.04)",
-                  fontFamily:"var(--font-mono)", fontSize:8, letterSpacing:"0.16em",
+                  fontFamily:"var(--font-mono)", fontSize:11, letterSpacing:"0.16em",
                   color: revealed ? "#F25C43" : "rgba(255,255,255,0.18)",
                   textAlign:"center", transition:"color 0.5s",
                 }}>
@@ -772,6 +789,140 @@ export default function Portfolio() {
             </div>
           </div>
         </div>
+
+        {/* ── CORPORATE TEASER STRIP (shown only on retail) ── */}
+        {section === "retail" && (
+          <div
+            style={{
+              marginTop: 24,
+              opacity: entered ? 1 : 0,
+              transform: entered ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s",
+            }}
+          >
+            {/* Label row */}
+            <div style={{
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              marginBottom: 10, flexWrap: "wrap", gap: 10,
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <div style={{ width: 1, height: 28, background: "rgba(242,92,67,0.4)" }} />
+                <div>
+                  <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.28em", color: "#F25C43", marginBottom: 2 }}>
+                    CORPORATE_VAULT // {CORPORATE.length} PROJECTS
+                  </div>
+                  <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.18em", color: "rgba(255,255,255,0.25)" }}>
+                    WHITE-LABEL · NDA-RESTRICTED · UK CLIENTS
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={() => switchSection("corporate")}
+                style={{
+                  all: "unset", cursor: "pointer",
+                  display: "flex", alignItems: "center", gap: 8,
+                  padding: "8px 18px",
+                  border: "1px solid rgba(242,92,67,0.35)",
+                  background: "rgba(242,92,67,0.06)",
+                  fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.2em",
+                  color: "#F25C43", textTransform: "uppercase",
+                  animation: "corporatePulse 2.5s ease-in-out infinite",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLButtonElement).style.background = "rgba(242,92,67,0.14)";
+                  (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(242,92,67,0.7)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLButtonElement).style.background = "rgba(242,92,67,0.06)";
+                  (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(242,92,67,0.35)";
+                }}
+              >
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="11" width="18" height="11" rx="1"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+                </svg>
+                View Corporate Projects
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </button>
+            </div>
+
+            {/* Teaser cards */}
+            <div className="vault-teaser-grid" style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: 2,
+            }}>
+              {CORPORATE.map((p) => (
+                <button
+                  key={p.id}
+                  onClick={() => switchSection("corporate")}
+                  style={{
+                    all: "unset", cursor: "pointer",
+                    position: "relative", overflow: "hidden",
+                    background: `linear-gradient(145deg, ${p.palette[1]}55, ${p.palette[0]}18)`,
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    padding: "18px 16px",
+                    display: "flex", flexDirection: "column", gap: 8,
+                    transition: "border-color 0.25s",
+                    boxSizing: "border-box",
+                  }}
+                  onMouseEnter={e => (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(242,92,67,0.3)"}
+                  onMouseLeave={e => (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.06)"}
+                >
+                  {/* Palette accent line */}
+                  <div style={{
+                    position: "absolute", top: 0, left: 0, right: 0, height: 2,
+                    background: `linear-gradient(to right, ${p.palette[0]}, transparent)`,
+                    opacity: 0.5,
+                  }} />
+
+                  {/* ID + lock */}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.2em", color: "rgba(242,92,67,0.5)" }}>{p.id}</span>
+                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="rgba(242,92,67,0.5)" strokeWidth="2">
+                      <rect x="3" y="11" width="18" height="11" rx="1"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+                    </svg>
+                  </div>
+
+                  {/* Blurred client name */}
+                  <div style={{
+                    fontFamily: "var(--font-display)", fontSize: 14,
+                    color: "rgba(255,255,255,0.25)",
+                    letterSpacing: "0.04em", lineHeight: 1,
+                    filter: "blur(5px)", userSelect: "none",
+                  }}>
+                    {p.client.toUpperCase()}
+                  </div>
+
+                  {/* Type */}
+                  <div style={{
+                    fontFamily: "var(--font-mono)", fontSize: 10,
+                    letterSpacing: "0.12em", color: "rgba(255,255,255,0.2)",
+                  }}>{p.type}</div>
+
+                  {/* Tags */}
+                  <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 2 }}>
+                    {p.tags.slice(0, 2).map(t => (
+                      <span key={t} style={{
+                        padding: "2px 7px",
+                        border: `1px solid ${p.palette[0]}22`,
+                        background: `${p.palette[0]}0A`,
+                        fontFamily: "var(--font-mono)", fontSize: 10,
+                        letterSpacing: "0.12em", color: p.palette[0], opacity: 0.6,
+                      }}>{t}</span>
+                    ))}
+                  </div>
+
+                  {/* Hint */}
+                  <div style={{
+                    fontFamily: "var(--font-mono)", fontSize: 10,
+                    letterSpacing: "0.18em", color: "rgba(242,92,67,0.4)",
+                    marginTop: 4, animation: "pulse 2.5s ease infinite",
+                  }}>CLICK TO DECRYPT →</div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
     </>
   );

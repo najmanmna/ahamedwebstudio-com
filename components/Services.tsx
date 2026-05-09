@@ -298,8 +298,8 @@ function AsyncVisual({ active }: { active: boolean }) {
         <div style={{ textAlign:"center" }}>
           <div style={{ fontFamily:"var(--font-mono)",fontSize:10,letterSpacing:"0.2em",color:asleep?"rgba(255,255,255,0.5)":"#F25C43",marginBottom:5 }}>{city}</div>
           <div style={{ fontFamily:"var(--font-display)",fontSize:"clamp(20px,4vw,28px)",color:asleep?"rgba(255,255,255,0.5)":"#fff",lineHeight:1,marginBottom:5 }}>{data.display}</div>
-          <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.16em",color:asleep?"rgba(255,255,255,0.4)":"rgba(255,255,255,0.6)",marginBottom:5 }}>{tz}</div>
-          <div style={{ display:"inline-block",padding:"3px 10px",border:`1px solid ${asleep?"rgba(26,40,72,0.4)":"rgba(242,92,67,0.3)"}`,background:asleep?"rgba(26,40,72,0.1)":"rgba(242,92,67,0.06)",fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.14em",color:asleep?"rgba(255,255,255,0.45)":"#F25C43" }}>
+          <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.16em",color:asleep?"rgba(255,255,255,0.4)":"rgba(255,255,255,0.6)",marginBottom:5 }}>{tz}</div>
+          <div style={{ display:"inline-block",padding:"3px 10px",border:`1px solid ${asleep?"rgba(26,40,72,0.4)":"rgba(242,92,67,0.3)"}`,background:asleep?"rgba(26,40,72,0.1)":"rgba(242,92,67,0.06)",fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.14em",color:asleep?"rgba(255,255,255,0.45)":"#F25C43" }}>
             {asleep ? "💤  ASLEEP" : "⚡  BUILDING"}
           </div>
         </div>
@@ -309,17 +309,17 @@ function AsyncVisual({ active }: { active: boolean }) {
 
   return (
     <div style={{ position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:"clamp(16px,4vw,40px)",padding:"clamp(16px,4vw,32px) clamp(12px,4vw,40px)",overflow:"hidden" }}>
-      <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.25em",color:"rgba(255,255,255,0.5)" }}>ASYNC_ENGINE // TIMEZONE_ADVANTAGE</div>
+      <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.25em",color:"rgba(255,255,255,0.5)" }}>ASYNC_ENGINE // TIMEZONE_ADVANTAGE</div>
       <div style={{ display:"flex",alignItems:"center",gap:"clamp(14px,3vw,40px)",flexWrap:"wrap",justifyContent:"center" }}>
         <Clock data={london}  city="LONDON, UK"  tz="UTC+0"    asleep={true}  />
         <div style={{ display:"flex",flexDirection:"column",alignItems:"center",gap:10 }}>
           <div style={{ width:1,height:24,background:"linear-gradient(to bottom,transparent,rgba(242,92,67,0.4))" }} />
-          <div style={{ padding:"8px 14px",textAlign:"center",border:"1px solid rgba(242,92,67,0.25)",background:"rgba(242,92,67,0.05)",fontFamily:"var(--font-mono)",fontSize:8,letterSpacing:"0.14em",color:"#F25C43",lineHeight:2 }}>BRIEF<br/>→<br/>STAGING</div>
+          <div style={{ padding:"8px 14px",textAlign:"center",border:"1px solid rgba(242,92,67,0.25)",background:"rgba(242,92,67,0.05)",fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.14em",color:"#F25C43",lineHeight:2 }}>BRIEF<br/>→<br/>STAGING</div>
           <div style={{ width:1,height:24,background:"linear-gradient(to bottom,rgba(242,92,67,0.4),transparent)" }} />
         </div>
         <Clock data={colombo} city="COLOMBO, LK" tz="UTC+5:30" asleep={false} />
       </div>
-      <div style={{ fontFamily:"var(--font-sans)",fontSize:"clamp(11px,2.5vw,13px)",fontWeight:300,color:"rgba(255,255,255,0.65)",textAlign:"center",lineHeight:1.8 }}>
+      <div style={{ fontFamily:"var(--font-sans)",fontSize:"clamp(13px,2.5vw,15px)",fontWeight:300,color:"rgba(255,255,255,0.65)",textAlign:"center",lineHeight:1.8 }}>
         Brief at end of your day.<br/>Live staging before your morning coffee.
       </div>
     </div>
@@ -351,9 +351,9 @@ function PerformanceVisual({ active }: { active: boolean }) {
           <span className="perf-score" style={{ fontFamily:"var(--font-display)",fontSize:44,color:"#F25C43",lineHeight:1 }}>100</span>
         </div>
         <div>
-          <div style={{ fontFamily:"var(--font-mono)",fontSize:9,color:"rgba(255,255,255,0.3)",letterSpacing:"0.22em",marginBottom:8 }}>PAGESPEED INSIGHTS</div>
+          <div style={{ fontFamily:"var(--font-mono)",fontSize:11,color:"rgba(255,255,255,0.3)",letterSpacing:"0.22em",marginBottom:8 }}>PAGESPEED INSIGHTS</div>
           <div className="perf-title" style={{ fontFamily:"var(--font-display)",fontSize:32,color:"#fff",letterSpacing:"0.04em",lineHeight:1,marginBottom:6 }}>PERFECT SCORE</div>
-          <div style={{ fontFamily:"var(--font-mono)",fontSize:9,color:"rgba(255,255,255,0.3)",letterSpacing:"0.16em" }}>GUARANTEED ON EVERY PROJECT</div>
+          <div style={{ fontFamily:"var(--font-mono)",fontSize:11,color:"rgba(255,255,255,0.3)",letterSpacing:"0.16em" }}>GUARANTEED ON EVERY PROJECT</div>
         </div>
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:16 }}>
@@ -366,7 +366,7 @@ function PerformanceVisual({ active }: { active: boolean }) {
               </div>
               <div style={{ display:"flex",alignItems:"baseline",gap:8 }}>
                 <span style={{ fontFamily:"var(--font-display)",fontSize:22,color:"#fff" }}>{m.value}</span>
-                <span style={{ fontFamily:"var(--font-mono)",fontSize:8,color:"rgba(255,255,255,0.45)",letterSpacing:"0.1em" }}>GOOD {m.good}</span>
+                <span style={{ fontFamily:"var(--font-mono)",fontSize:10,color:"rgba(255,255,255,0.45)",letterSpacing:"0.1em" }}>GOOD {m.good}</span>
               </div>
             </div>
             <div style={{ height:3,background:"rgba(255,255,255,0.05)",borderRadius:2,overflow:"hidden" }}>
@@ -515,7 +515,7 @@ export default function Services() {
         {/* Header */}
         <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-end",marginBottom:60,flexWrap:"wrap",gap:20,opacity:entered?1:0,transform:entered?"none":"translateY(20px)",transition:"opacity 0.7s ease,transform 0.7s ease" }}>
           <div>
-            <div style={{ fontFamily:"var(--font-mono)",fontSize:10,letterSpacing:"0.3em",color:"#F25C43",marginBottom:16,display:"flex",alignItems:"center",gap:8 }}>
+            <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.3em",color:"#F25C43",marginBottom:16,display:"flex",alignItems:"center",gap:8 }}>
               <span style={{ width:5,height:5,background:"#F25C43",borderRadius:"50%",display:"inline-block" }} />
               VERIFIED_CAPABILITIES // SYSTEM_INFRASTRUCTURE
             </div>
@@ -524,7 +524,7 @@ export default function Services() {
               <span style={{ WebkitTextStroke:"2px rgba(255,255,255,0.7)",color:"transparent",filter:"drop-shadow(0 0 18px rgba(255,255,255,0.12))" }}>Infrastructure.</span>
             </h2>
           </div>
-          <div style={{ fontFamily:"var(--font-mono)",fontSize:10,letterSpacing:"0.2em",color:"rgba(255,255,255,0.28)",textAlign:"right",lineHeight:2,maxWidth:180 }}>
+          <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.2em",color:"rgba(255,255,255,0.28)",textAlign:"right",lineHeight:2,maxWidth:180 }}>
             Engineered<br/>for scale.<br/>Sub-second<br/>latency.<br/>Always.
           </div>
         </div>
@@ -534,7 +534,7 @@ export default function Services() {
 
           {/* LEFT — chapter list / mobile: horizontal strip */}
           <div className="svc-sidebar" style={{ background:"#0A0A0A",border:"1px solid rgba(255,255,255,0.06)",display:"flex",flexDirection:"column" }}>
-            <div className="svc-sidebar-header" style={{ padding:"13px 22px",borderBottom:"1px solid rgba(255,255,255,0.05)",background:"rgba(26,40,72,0.1)",fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.22em",color:"rgba(255,255,255,0.25)" }}>
+            <div className="svc-sidebar-header" style={{ padding:"13px 22px",borderBottom:"1px solid rgba(255,255,255,0.05)",background:"rgba(26,40,72,0.1)",fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.22em",color:"rgba(255,255,255,0.25)" }}>
               CAPABILITY_INDEX // {CAPS.length} MODULES
             </div>
 
@@ -542,9 +542,9 @@ export default function Services() {
               <div key={c.id} className={`cap-row${active===i?" active":""}`} onClick={()=>goTo(i)}>
                 <span className="cap-num">{c.id}</span>
                 <div style={{ flex:1,minWidth:0 }}>
-                  <div style={{ fontFamily:"var(--font-mono)",fontSize:8,letterSpacing:"0.18em",color:active===i?"#F25C43":"rgba(255,255,255,0.2)",marginBottom:4,transition:"color 0.3s" }}>{c.tag}</div>
+                  <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.18em",color:active===i?"#F25C43":"rgba(255,255,255,0.2)",marginBottom:4,transition:"color 0.3s" }}>{c.tag}</div>
                   <div className="cap-name">{c.title}</div>
-                  <div style={{ fontFamily:"var(--font-mono)",fontSize:8,letterSpacing:"0.1em",color:"rgba(255,255,255,0.22)",marginTop:4 }}>{c.short}</div>
+                  <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.1em",color:"rgba(255,255,255,0.22)",marginTop:4 }}>{c.short}</div>
                 </div>
                 {active===i && (
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#F25C43" strokeWidth="2" style={{ flexShrink:0,marginTop:4 }}>
@@ -570,7 +570,7 @@ export default function Services() {
           <div style={{ display:"flex",flexDirection:"column",gap:2 }}>
             <div className="svc-visual-wrap" style={{ flex:1,minHeight:520,background:"#0A0A0A",border:"1px solid rgba(255,255,255,0.06)",borderTop:"1px solid rgba(26,40,72,0.5)",position:"relative",overflow:"hidden",opacity:trans?0:1,transform:trans?"scale(0.985)":"scale(1)",transition:"opacity 0.24s ease,transform 0.24s ease" }}>
               <div style={{ position:"absolute",top:0,left:0,right:0,height:2,background:"linear-gradient(to right,#1A2848,#F25C43,transparent)",zIndex:2 }} />
-              <div style={{ position:"absolute",top:16,right:16,zIndex:10,display:"flex",alignItems:"center",gap:6,padding:"4px 10px",border:"1px solid rgba(242,92,67,0.22)",background:"rgba(3,3,3,0.7)",backdropFilter:"blur(8px)",fontFamily:"var(--font-mono)",fontSize:8,letterSpacing:"0.18em",color:"#F25C43" }}>
+                <div style={{ position:"absolute",top:16,right:16,zIndex:10,display:"flex",alignItems:"center",gap:6,padding:"4px 10px",border:"1px solid rgba(242,92,67,0.22)",background:"rgba(3,3,3,0.7)",backdropFilter:"blur(8px)",fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.18em",color:"#F25C43" }}>
                 <span style={{ width:4,height:4,borderRadius:"50%",background:"#F25C43",animation:"blink 2s ease infinite",display:"inline-block" }} />
                 {cap.tag}
               </div>
@@ -579,10 +579,10 @@ export default function Services() {
 
             <div className="svc-copy-strip" style={{ background:"#0A0A0A",border:"1px solid rgba(255,255,255,0.06)",padding:"22px 28px",display:"grid",gridTemplateColumns:"1fr auto",gap:24,alignItems:"start",opacity:trans?0:1,transform:trans?"translateY(5px)":"translateY(0)",transition:"opacity 0.24s ease,transform 0.24s ease" }}>
               <div>
-                <p style={{ fontFamily:"var(--font-sans)",fontSize:14,fontWeight:300,color:"rgba(255,255,255,0.72)",lineHeight:1.8,marginBottom:10 }}>{cap.body}</p>
-                <p style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.12em",color:"rgba(255,255,255,0.5)",lineHeight:1.7 }}>→ {cap.detail}</p>
+                <p style={{ fontFamily:"var(--font-sans)",fontSize:15,fontWeight:300,color:"rgba(255,255,255,0.72)",lineHeight:1.8,marginBottom:10 }}>{cap.body}</p>
+                <p style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.12em",color:"rgba(255,255,255,0.5)",lineHeight:1.7 }}>→ {cap.detail}</p>
               </div>
-              <div className="metric-badge" style={{ display:"flex",alignItems:"center",gap:7,padding:"8px 16px",flexShrink:0,border:"1px solid rgba(242,92,67,0.2)",background:"rgba(242,92,67,0.04)",fontFamily:"var(--font-mono)",fontSize:10,letterSpacing:"0.18em",color:"#F25C43",whiteSpace:"nowrap" }}>
+              <div className="metric-badge" style={{ display:"flex",alignItems:"center",gap:7,padding:"8px 16px",flexShrink:0,border:"1px solid rgba(242,92,67,0.2)",background:"rgba(242,92,67,0.04)",fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.18em",color:"#F25C43",whiteSpace:"nowrap" }}>
                 <span style={{ width:4,height:4,borderRadius:"50%",background:"#F25C43",display:"inline-block" }} />
                 {cap.metric}
               </div>

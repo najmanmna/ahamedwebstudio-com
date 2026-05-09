@@ -59,10 +59,10 @@ function LiveClock() {
           border:`1px solid ${c.active ? "rgba(242,92,67,0.2)" : "rgba(26,40,72,0.5)"}`,
           borderTop:`2px solid ${c.active ? "#F25C43" : "#1A2848"}`,
         }}>
-          <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.18em",color:c.active?"#F25C43":"rgba(255,255,255,0.3)",marginBottom:4 }}>
+          <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.18em",color:c.active?"#F25C43":"rgba(255,255,255,0.3)",marginBottom:4 }}>
             {c.city} // {c.offset}
           </div>
-          <div style={{ fontFamily:"var(--font-mono)",fontSize:13,color:c.active?"#fff":"rgba(255,255,255,0.4)",letterSpacing:"0.08em" }}>
+          <div style={{ fontFamily:"var(--font-mono)",fontSize:14,color:c.active?"#fff":"rgba(255,255,255,0.4)",letterSpacing:"0.08em" }}>
             {fmt(c.tz)}
           </div>
         </div>
@@ -82,7 +82,7 @@ function StackTicker() {
         {items.map((item,i) => (
           <div key={i} style={{ display:"flex",alignItems:"center",gap:10,flexShrink:0 }}>
             <div style={{ width:3,height:3,background:i%2===0?"#F25C43":"#1A2848",borderRadius:"50%" }}/>
-            <span style={{ fontFamily:"var(--font-mono)",fontSize:10,letterSpacing:"0.2em",color:"rgba(255,255,255,0.3)",whiteSpace:"nowrap" }}>{item}</span>
+            <span style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.2em",color:"rgba(255,255,255,0.3)",whiteSpace:"nowrap" }}>{item}</span>
           </div>
         ))}
       </div>
@@ -96,7 +96,7 @@ function SystemStatus() {
     { label:"UPTIME",      value:"99.98%",   accent:"coral" },
     { label:"LCP_AVG",     value:"0.8s",     accent:"coral" },
     { label:"CWV_SCORE",   value:"100/100",  accent:"coral" },
-    { label:"NEXT_SPRINT", value:"APR_2026", accent:"navy"  },
+   
   ];
   return (
     <div style={{ display:"flex",flexDirection:"column",gap:2 }}>
@@ -109,9 +109,9 @@ function SystemStatus() {
         }}>
           <div style={{ display:"flex",alignItems:"center",gap:8 }}>
             <div style={{ width:4,height:4,borderRadius:"50%",background:c.accent==="coral"?"#F25C43":"#1A2848",border:c.accent==="navy"?"1px solid rgba(255,255,255,0.3)":"none" }}/>
-            <span style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.16em",color:"rgba(255,255,255,0.45)" }}>{c.label}</span>
+            <span style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.16em",color:"rgba(255,255,255,0.45)" }}>{c.label}</span>
           </div>
-          <span style={{ fontFamily:"var(--font-mono)",fontSize:10,letterSpacing:"0.1em",color:c.accent==="coral"?"#F25C43":"rgba(255,255,255,0.6)" }}>{c.value}</span>
+          <span style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.1em",color:c.accent==="coral"?"#F25C43":"rgba(255,255,255,0.6)" }}>{c.value}</span>
         </div>
       ))}
     </div>
@@ -262,13 +262,13 @@ export default function Footer() {
               </div>
 
               {/* Tagline — "overnight" removed */}
-              <p style={{ fontFamily:"var(--font-sans)",fontSize:13,fontWeight:300,lineHeight:1.85,letterSpacing:"0.02em",color:"rgba(255,255,255,0.55)",maxWidth:320,borderLeft:"2px solid rgba(26,40,72,0.6)",paddingLeft:16 }}>
+              <p style={{ fontFamily:"var(--font-sans)",fontSize:15,fontWeight:300,lineHeight:1.85,letterSpacing:"0.02em",color:"rgba(255,255,255,0.55)",maxWidth:320,borderLeft:"2px solid rgba(26,40,72,0.6)",paddingLeft:16 }}>
                 Silent front-end execution for UK and UAE agencies. Legacy sites rebuilt as world-class Next.js architectures — without the wait.
               </p>
 
               {/* Clock */}
               <div>
-                <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.25em",color:"rgba(255,255,255,0.3)",marginBottom:8 }}>
+                <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.25em",color:"rgba(255,255,255,0.3)",marginBottom:8 }}>
                   ASYNC_ENGINE // LIVE_CLOCK
                 </div>
                 <LiveClock/>
@@ -276,7 +276,7 @@ export default function Footer() {
 
               {/* Social buttons — LinkedIn + Fiverr with logos */}
               <div>
-                <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.22em",color:"rgba(255,255,255,0.3)",marginBottom:10 }}>
+                <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.22em",color:"rgba(255,255,255,0.3)",marginBottom:10 }}>
                   EXTERNAL_NODES
                 </div>
                 <div style={{ display:"flex",gap:6,flexWrap:"wrap" }}>
@@ -304,7 +304,7 @@ export default function Footer() {
 
             {/* ── COL 2 — Nav ── */}
             <div>
-              <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.3em",color:"#F25C43",marginBottom:18 }}>
+              <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.3em",color:"#F25C43",marginBottom:18 }}>
                 SYSTEM_DIRECTORY
               </div>
               <div style={{ display:"flex",flexDirection:"column" }}>
@@ -315,7 +315,7 @@ export default function Footer() {
                     onClick={e=>navClick(e,n.href)}
                     className="footer-nav-link"
                   >
-                    <span style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.15em",color:"rgba(255,255,255,0.25)",marginRight:10,minWidth:20 }}>{n.code}</span>
+                    <span style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.15em",color:"rgba(255,255,255,0.25)",marginRight:10,minWidth:20 }}>{n.code}</span>
                     <span style={{ fontFamily:"var(--font-display)",fontSize:18,letterSpacing:"0.04em",flex:1 }}>{n.label.toUpperCase()}</span>
                   </a>
                 ))}
@@ -325,12 +325,12 @@ export default function Footer() {
             {/* ── COL 3 — Status + Contact ── */}
             <div style={{ display:"flex",flexDirection:"column",gap:20 }}>
               <div>
-                <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.3em",color:"#F25C43",marginBottom:12 }}>SYSTEM_STATUS</div>
+                <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.3em",color:"#F25C43",marginBottom:12 }}>SYSTEM_STATUS</div>
                 <SystemStatus/>
               </div>
 
               <div>
-                <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.3em",color:"#F25C43",marginBottom:12 }}>GLOBAL_TELEMETRY</div>
+                <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.3em",color:"#F25C43",marginBottom:12 }}>GLOBAL_TELEMETRY</div>
                 <div style={{ display:"flex",flexDirection:"column",gap:2 }}>
                   {[
                     { label:"BASE",      value:"Colombo, LK" },
@@ -338,14 +338,14 @@ export default function Footer() {
                     { label:"TELEMETRY", value:"+94 71 741 1188",           href:"https://wa.me/94717411188" },
                   ].map(item => (
                     <div key={item.label} style={{ padding:"9px 12px",border:"1px solid rgba(255,255,255,0.04)",background:"rgba(255,255,255,0.01)",borderLeft:"2px solid rgba(26,40,72,0.4)" }}>
-                      <div style={{ fontFamily:"var(--font-mono)",fontSize:8,letterSpacing:"0.18em",color:"rgba(255,255,255,0.35)",marginBottom:3 }}>{item.label}</div>
+                      <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.18em",color:"rgba(255,255,255,0.35)",marginBottom:3 }}>{item.label}</div>
                       {item.href ? (
-                        <a href={item.href} style={{ fontFamily:"var(--font-mono)",fontSize:10,color:"rgba(255,255,255,0.55)",letterSpacing:"0.07em",textDecoration:"none",display:"block",transition:"color 0.25s" }}
+                        <a href={item.href} style={{ fontFamily:"var(--font-mono)",fontSize:11,color:"rgba(255,255,255,0.55)",letterSpacing:"0.07em",textDecoration:"none",display:"block",transition:"color 0.25s" }}
                           onMouseEnter={e=>e.currentTarget.style.color="#F25C43"}
                           onMouseLeave={e=>e.currentTarget.style.color="rgba(255,255,255,0.55)"}
                         >{item.value}</a>
                       ) : (
-                        <div style={{ fontFamily:"var(--font-mono)",fontSize:10,color:"rgba(255,255,255,0.55)",letterSpacing:"0.07em" }}>{item.value}</div>
+                        <div style={{ fontFamily:"var(--font-mono)",fontSize:11,color:"rgba(255,255,255,0.55)",letterSpacing:"0.07em" }}>{item.value}</div>
                       )}
                     </div>
                   ))}
@@ -360,10 +360,10 @@ export default function Footer() {
             style={{ borderTop:"1px solid rgba(255,255,255,0.04)",padding:"18px 0 32px",display:"flex",justifyContent:"space-between",alignItems:"center",gap:16,flexWrap:"wrap" }}
           >
             <div style={{ display:"flex",flexDirection:"column",gap:5 }}>
-              <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.18em",color:"rgba(255,255,255,0.45)" }}>
+              <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.18em",color:"rgba(255,255,255,0.45)" }}>
                 © {year} AHAMED WEB STUDIO // ALL_SYSTEMS_OPERATIONAL
               </div>
-              <div style={{ fontFamily:"var(--font-mono)",fontSize:9,letterSpacing:"0.16em",color:"rgba(255,255,255,0.25)" }}>
+              <div style={{ fontFamily:"var(--font-mono)",fontSize:11,letterSpacing:"0.16em",color:"rgba(255,255,255,0.25)" }}>
                 BUILT WITHOUT TEMPLATES // 100% ASYNC // SUB-SECOND LATENCY
               </div>
             </div>
