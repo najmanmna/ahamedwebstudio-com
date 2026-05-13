@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 
 // ─── CORRECT LOGOS ────────────────────────────────────────────────────────────
-// Next.js — wordmark N shape, official
 const NextLogo = () => (
   <svg viewBox="0 0 48 48" fill="none" width="28" height="28">
     <path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z" fill="currentColor" opacity="0.15" stroke="currentColor" strokeWidth="1"/>
@@ -11,7 +10,6 @@ const NextLogo = () => (
   </svg>
 );
 
-// TypeScript — proper blue square with TS
 const TSLogo = () => (
   <svg viewBox="0 0 28 28" fill="none" width="28" height="28">
     <rect x="2" y="2" width="24" height="24" rx="2" fill="currentColor" opacity="0.15" stroke="currentColor" strokeWidth="1"/>
@@ -20,7 +18,6 @@ const TSLogo = () => (
   </svg>
 );
 
-// React — atom
 const ReactLogo = () => (
   <svg viewBox="0 0 28 28" fill="none" width="28" height="28">
     <circle cx="14" cy="14" r="2.2" fill="currentColor"/>
@@ -30,21 +27,18 @@ const ReactLogo = () => (
   </svg>
 );
 
-// Sanity — S mark
 const SanityLogo = () => (
   <svg viewBox="0 0 28 28" fill="currentColor" width="28" height="28">
     <path d="M19.5 10.8c0-2.8-2.2-4.8-5.5-4.8-2.2 0-4.3.9-5.8 2.4l1.8 2c1.1-1 2.4-1.6 3.8-1.6 1.5 0 2.4.7 2.4 1.8 0 1-.7 1.6-3 2.3-2.6.8-4.3 1.9-4.3 4.4 0 2.7 2.1 4.7 5.3 4.7 2.3 0 4.5-1 6-2.5l-1.8-2c-1.2 1-2.5 1.7-4 1.7-1.5 0-2.4-.7-2.4-1.8 0-1 .7-1.6 3-2.3 2.7-.8 4.5-1.8 4.5-4.3z"/>
   </svg>
 );
 
-// Tailwind
 const TailwindLogo = () => (
   <svg viewBox="0 0 28 28" fill="currentColor" width="28" height="28">
     <path d="M14 7.2c-3.7 0-6.1 1.9-7 5.6 1.4-1.9 3-2.6 4.9-2.1 1.1.27 1.8 1.04 2.67 1.9C15.86 13.95 17.5 15.6 21 15.6c3.7 0 6.1-1.9 7-5.6-1.4 1.9-3 2.6-4.9 2.1-1.1-.27-1.8-1.04-2.67-1.9C19.14 8.85 17.5 7.2 14 7.2zM7 14.8c-3.7 0-6.1 1.9-7 5.6 1.4-1.9 3-2.6 4.9-2.1 1.1.27 1.8 1.04 2.67 1.9C8.86 21.55 10.5 23.2 14 23.2c3.7 0 6.1-1.9 7-5.6-1.4 1.9-3 2.6-4.9 2.1-1.1-.27-1.8-1.04-2.67-1.9C12.14 16.45 10.5 14.8 7 14.8z"/>
   </svg>
 );
 
-// Three.js — geometric triangle
 const ThreeLogo = () => (
   <svg viewBox="0 0 28 28" fill="none" width="28" height="28">
     <polygon points="14,3 25,22 3,22" stroke="currentColor" strokeWidth="1.4" fill="none"/>
@@ -55,27 +49,21 @@ const ThreeLogo = () => (
   </svg>
 );
 
-// Framer Motion — F mark
 const FramerLogo = () => (
   <svg viewBox="0 0 28 28" fill="currentColor" width="28" height="28">
     <path d="M5 4h18v9H14L5 4zm0 9h9l9 9H14v-4.5L5 13zm0 9h9v5.5L5 22z"/>
   </svg>
 );
 
-// Shopify — bag + S (matches Shopify brand icon silhouette)
 const ShopifyLogo = () => (
   <svg viewBox="0 0 28 28" fill="none" width="28" height="28">
-    {/* Bag body */}
     <path d="M7 12h14l-1.4 12H8.4L7 12z" fill="currentColor" fillOpacity="0.13" stroke="currentColor" strokeWidth="1.2"/>
-    {/* Handle */}
     <path d="M11 12c0-1.66 1.34-3 3-3s3 1.34 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" fill="none"/>
-    {/* S glyph */}
     <path d="M12.2 16.4c0-.9.8-1.6 1.8-1.6h.5c.9 0 1.5-.6 1.5-1.3 0-.5-.4-.9-1-.9" stroke="currentColor" strokeWidth="1.15" strokeLinecap="round" fill="none"/>
     <path d="M15.8 17.6c0 .9-.8 1.6-1.8 1.6h-.5c-.9 0-1.5.6-1.5 1.3 0 .5.4.9 1 .9" stroke="currentColor" strokeWidth="1.15" strokeLinecap="round" fill="none"/>
   </svg>
 );
 
-// WebGL — hexagon
 const WebGLLogo = () => (
   <svg viewBox="0 0 28 28" fill="none" width="28" height="28">
     <polygon points="14,3 23,8 23,18 14,23 5,18 5,8" stroke="currentColor" strokeWidth="1.3"/>
@@ -205,8 +193,8 @@ function TerminalReadout({ tech }: { tech: typeof STACK[0] }) {
           color: l.includes("ACTIVE")
             ? "#F25C43"
             : l.includes("VERSION")
-              ? "rgba(255,255,255,0.85)"
-              : "rgba(255,255,255,0.5)",
+              ? "rgba(255,255,255,0.95)"
+              : "rgba(255,255,255,0.75)", // FIX: Boosted from 0.5 to 0.75 for readability
           letterSpacing: "0.1em",
         }}>
           {l}
@@ -225,7 +213,7 @@ export default function TechStack() {
   const [active, setActive]   = useState(STACK[0]);
   const [entered, setEntered] = useState(false);
   const [fill, setFill]       = useState(0);
-  const [panelOpen, setPanelOpen] = useState(false); // mobile panel toggle
+  const [panelOpen, setPanelOpen] = useState(false);
 
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => {
@@ -243,7 +231,7 @@ export default function TechStack() {
 
   const handleSelect = (tech: typeof STACK[0]) => {
     setActive(tech);
-    setPanelOpen(true); // on mobile, open panel on select
+    setPanelOpen(true);
   };
 
   const activeIndex = STACK.findIndex(s => s.id === active.id);
@@ -287,28 +275,30 @@ export default function TechStack() {
 
         .ts-tag {
           font-family: var(--font-mono); font-size: 11px;
-          letter-spacing: 0.22em; color: rgba(255,255,255,0.35);
+          letter-spacing: 0.22em; 
+          color: rgba(255,255,255,0.6); /* FIX: Boosted from 0.35 */
           text-transform: uppercase; transition: color 0.3s;
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
         .ts-item.active .ts-tag { color: #F25C43; }
 
         .ts-icon {
-          color: rgba(255,255,255,0.65); transition: color 0.3s, transform 0.3s;
+          color: rgba(255,255,255,0.85); /* FIX: Boosted from 0.65 */
+          transition: color 0.3s, transform 0.3s;
           display: flex; align-items: center;
         }
         .ts-item:hover .ts-icon, .ts-item.active .ts-icon {
-          color: rgba(255,255,255,0.9); transform: scale(1.06);
+          color: rgba(255,255,255,1); transform: scale(1.06);
         }
 
         .ts-name {
           font-family: var(--font-mono); font-size: 11px;
-          letter-spacing: 0.1em; color: rgba(255,255,255,0.65);
+          letter-spacing: 0.1em; 
+          color: rgba(255,255,255,0.9); /* FIX: Boosted from 0.65 */
           text-transform: uppercase; transition: color 0.3s;
         }
         .ts-item:hover .ts-name, .ts-item.active .ts-name { color: #fff; }
 
-        /* Mobile panel overlay */
         .ts-mobile-panel {
           display: none;
         }
@@ -356,11 +346,13 @@ export default function TechStack() {
           transition: "opacity 0.6s ease, transform 0.6s ease",
           flexWrap: "wrap", gap: 12,
         }}>
-          <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.32em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", whiteSpace: "nowrap" }}>
+          {/* FIX: Boosted color alpha to 0.65 */}
+          <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.32em", color: "rgba(255,255,255,0.65)", textTransform: "uppercase", whiteSpace: "nowrap" }}>
             <span style={{ color: "#F25C43" }}>◆</span> CORE_INFRASTRUCTURE // SYSTEM_MODULES
           </div>
           <div style={{ flex: 1, minWidth: 40, height: 1, background: "linear-gradient(to right, rgba(242,92,67,0.35), rgba(26,40,72,0.2), transparent)" }} />
-          <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.22em", color: "rgba(255,255,255,0.28)", whiteSpace: "nowrap" }}>
+          {/* FIX: Boosted color alpha to 0.6 */}
+          <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.22em", color: "rgba(255,255,255,0.6)", whiteSpace: "nowrap" }}>
             {STACK.length} MODULES_LOADED
           </div>
         </div>
@@ -418,7 +410,8 @@ export default function TechStack() {
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.2em", color: "#F25C43", textTransform: "uppercase", marginBottom: 20 }}>
               {active.tag} // {active.version}
             </div>
-            <div style={{ fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.75, letterSpacing: "0.02em" }}>
+            {/* FIX: Increased font-weight from 300 to 400 and opacity from 0.7 to 0.85 */}
+            <div style={{ fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 400, color: "rgba(255,255,255,0.85)", lineHeight: 1.75, letterSpacing: "0.02em" }}>
               {active.desc}
             </div>
             {/* Progress bar */}
@@ -426,7 +419,8 @@ export default function TechStack() {
               <div style={{ height: "100%", width: `${fill}%`, background: "linear-gradient(to right, #1A2848, #F25C43)", transition: "width 0.7s cubic-bezier(0.76,0,0.24,1)" }} />
               <div style={{ position: "absolute", top: 0, bottom: 0, width: 60, background: "linear-gradient(to right, transparent, rgba(242,92,67,0.35), transparent)", animation: "scanH 2s ease infinite" }} />
             </div>
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "rgba(255,255,255,0.28)", letterSpacing: "0.2em", marginTop: 14 }}>
+            {/* FIX: Boosted alpha to 0.5 */}
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "rgba(255,255,255,0.5)", letterSpacing: "0.2em", marginTop: 14 }}>
               MODULE {String(activeIndex + 1).padStart(2, "0")} / {String(STACK.length).padStart(2, "0")}
             </div>
           </div>
@@ -465,7 +459,8 @@ export default function TechStack() {
                   position: "absolute", top: 14, right: 16,
                   background: "none", border: "none", cursor: "pointer",
                   fontFamily: "var(--font-mono)", fontSize: 11,
-                  letterSpacing: "0.14em", color: "rgba(255,255,255,0.3)",
+                  letterSpacing: "0.14em", 
+                  color: "rgba(255,255,255,0.6)", /* FIX: Boosted from 0.3 */
                   padding: "4px 8px",
                   borderLeft: "1px solid rgba(255,255,255,0.08)",
                 }}
@@ -478,7 +473,8 @@ export default function TechStack() {
                 {["#F25C43","rgba(26,40,72,0.8)","rgba(255,255,255,0.07)"].map((c,i) => (
                   <div key={i} style={{ width:8,height:8,borderRadius:"50%",background:c }} />
                 ))}
-                <span style={{ fontFamily:"var(--font-mono)",fontSize:11,color:"rgba(255,255,255,0.25)",letterSpacing:"0.16em",marginLeft:8 }}>
+                {/* FIX: Boosted from 0.25 to 0.5 */}
+                <span style={{ fontFamily:"var(--font-mono)",fontSize:11,color:"rgba(255,255,255,0.5)",letterSpacing:"0.16em",marginLeft:8 }}>
                   MODULE_READOUT.log
                 </span>
               </div>
@@ -502,8 +498,8 @@ export default function TechStack() {
                 {/* Divider */}
                 <div style={{ height: 1, background: "linear-gradient(to right, #1A2848, rgba(242,92,67,0.3), transparent)" }} />
 
-                {/* Description */}
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.75, margin: 0 }}>
+                {/* Description FIX: Increased font-weight from 300 to 400 and opacity from 0.65 to 0.85 */}
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 400, color: "rgba(255,255,255,0.85)", lineHeight: 1.75, margin: 0 }}>
                   {active.desc}
                 </p>
 
@@ -522,13 +518,14 @@ export default function TechStack() {
                     display: "inline-flex", alignItems: "center", gap: 7,
                     padding: "6px 14px", border: "1px solid rgba(26,40,72,0.4)",
                     background: "rgba(26,40,72,0.1)", fontFamily: "var(--font-mono)",
-                    fontSize: 11, letterSpacing: "0.14em", color: "rgba(255,255,255,0.3)",
+                    fontSize: 11, letterSpacing: "0.14em", 
+                    color: "rgba(255,255,255,0.6)", /* FIX: Boosted from 0.3 */
                   }}>
                     MODULE {String(activeIndex + 1).padStart(2,"0")} / {String(STACK.length).padStart(2,"0")}
                   </div>
                 </div>
 
-                {/* Terminal readout — compact on mobile */}
+                {/* Terminal readout */}
                 <div style={{ background: "#030303", border: "1px solid rgba(26,40,72,0.3)", borderLeft: "2px solid #1A2848", padding: "14px 16px" }}>
                   <TerminalReadout tech={active} />
                 </div>
@@ -541,12 +538,12 @@ export default function TechStack() {
             </div>
           )}
 
-          {/* Tap hint — only when no panel open */}
+          {/* Tap hint FIX: Boosted color alpha from 0.2 to 0.5 */}
           {!panelOpen && (
             <div style={{
               marginTop: 8, textAlign: "center",
               fontFamily: "var(--font-mono)", fontSize: 11,
-              letterSpacing: "0.2em", color: "rgba(255,255,255,0.2)",
+              letterSpacing: "0.2em", color: "rgba(255,255,255,0.5)",
               padding: "10px 0",
             }}>
               TAP A MODULE TO INSPECT

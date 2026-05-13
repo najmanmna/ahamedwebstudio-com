@@ -7,19 +7,26 @@ function TerminalBio({ active }: { active: boolean }) {
   const LINES = [
     { text: "$ INITIALIZE OPERATOR_PROFILE...", delay: 0,    color: "rgba(255,255,255,0.45)" },
     { text: "$ ID: AWS_01 // AHAMED NAJMAN",    delay: 300,  color: "#F25C43"               },
-    { text: "$ ROLE: LEAD_FRONT_END_ARCHITECT", delay: 600,  color: "rgba(255,255,255,0.75)"},
-    { text: "$ BASE: COLOMBO, LK // UTC+5:30",  delay: 900,  color: "rgba(255,255,255,0.6)" },
-    { text: "$ NETWORK: UK // UAE // GLOBAL",   delay: 1200, color: "rgba(255,255,255,0.6)" },
-    { text: "$ STACK: NEXT.JS // THREE.JS // WEBGL", delay: 1500, color: "rgba(255,255,255,0.6)"},
-    { text: "$ PIPELINE: 100% ASYNC_EXECUTION", delay: 1800, color: "rgba(255,255,255,0.6)" },
-    { text: "$ PROJECTS_DEPLOYED: 20+",         delay: 2100, color: "rgba(255,255,255,0.6)" },
-   
+    { text: "$ EDU: B.E. COMPUTER SYSTEMS",     delay: 600,  color: "rgba(255,255,255,0.75)"},
+    { text: "$ BASE: BORALESGAMUWA, LK",        delay: 900,  color: "rgba(255,255,255,0.6)" },
+    { text: "$ STACK: NEXT.JS // TAILWIND // SANITY", delay: 1200, color: "rgba(255,255,255,0.6)"},
+    { text: "$ PIPELINE: 100% ASYNC_EXECUTION", delay: 1500, color: "rgba(255,255,255,0.6)" },
+    { text: "$ DEPLOY_LOG: HARLEY_LOUNGE // ARKMURUS // 10QBIT // ARIXA", delay: 1800, color: "rgba(255,255,255,0.6)" },
   ];
 
   const [visible, setVisible] = useState<number[]>([]);
 
   useEffect(() => {
     if (!active) return;
+    
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    if (prefersReducedMotion) {
+      setVisible(LINES.map((_, i) => i)); // Show all immediately
+      return;
+    }
+
     setVisible([]);
     const timers = LINES.map((line, i) =>
       setTimeout(() => setVisible(prev => [...prev, i]), line.delay)
@@ -28,7 +35,7 @@ function TerminalBio({ active }: { active: boolean }) {
   }, [active]);
 
   return (
-    <div style={{ background: "#030303", border: "1px solid rgba(255,255,255,0.07)", position: "relative", overflow: "hidden" }}>
+    <div aria-hidden="true" style={{ background: "#030303", border: "1px solid rgba(255,255,255,0.07)", position: "relative", overflow: "hidden" }}>
       {/* Chrome */}
       <div style={{ height: 28, background: "rgba(26,40,72,0.35)", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", gap: 6, paddingLeft: 12 }}>
         {["#F25C43","rgba(26,40,72,0.8)","rgba(255,255,255,0.08)"].map((c,i) => (
@@ -39,7 +46,7 @@ function TerminalBio({ active }: { active: boolean }) {
         </span>
       </div>
 
-        <div style={{ padding: "16px 20px" }}>
+      <div style={{ padding: "16px 20px" }}>
         {LINES.map((line, i) => (
           <div key={i} style={{
             fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 1.9,
@@ -52,7 +59,7 @@ function TerminalBio({ active }: { active: boolean }) {
             {visible.includes(i) && <span style={{ color:"#F25C43", marginRight:8, opacity:0.45 }}>›</span>}
             {line.text}
             {i === LINES.length - 1 && visible.includes(i) && (
-              <span style={{ animation:"blink 1s step-end infinite", marginLeft:2 }}>_</span>
+              <span className="terminal-cursor" style={{ marginLeft:2 }}>_</span>
             )}
           </div>
         ))}
@@ -66,26 +73,9 @@ function TerminalBio({ active }: { active: boolean }) {
 
 // ─── ARCHITECT FRAME ──────────────────────────────────────────────────────────
 function ArchitectFrame() {
-  const [scanY, setScanY] = useState(0);
-  const dirRef = useRef(1);
-
-  useEffect(() => {
-    let raf: number;
-    const tick = () => {
-      setScanY(prev => {
-        const next = prev + dirRef.current * 0.4;
-        if (next > 100) dirRef.current = -1;
-        if (next < 0)   dirRef.current = 1;
-        return next;
-      });
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
+  // REMOVED: React state/rAF for scanline. Now handled by CSS GPU animation.
   return (
-    <div style={{ position:"relative", width:"100%", aspectRatio:"4/5" }}>
+    <div aria-hidden="true" style={{ position:"relative", width:"100%", aspectRatio:"4/5" }}>
       {/* Corner brackets */}
       {[
         { top:-8,    left:-8,  borderWidth:"1px 0 0 1px" },
@@ -93,13 +83,13 @@ function ArchitectFrame() {
         { bottom:-8, left:-8,  borderWidth:"0 0 1px 1px" },
         { bottom:-8, right:-8, borderWidth:"0 1px 1px 0" },
       ].map((s,i) => (
-        <div key={i} style={{ position:"absolute", width:24, height:24, borderStyle:"solid", borderColor:"rgba(242,92,67,0.45)", ...s }} />
+        <div key={i} style={{ position:"absolute", width:24, height:24, borderStyle:"solid", borderColor:"rgba(242,92,67,0.45)", zIndex: 10, ...s }} />
       ))}
 
       <div style={{ position:"absolute", inset:0, background:"rgba(255,255,255,0.02)", border:"1px solid rgba(255,255,255,0.07)", overflow:"hidden" }}>
         <img
           src="/najman.png"
-          alt="Ahamed Najman"
+          alt="" // Empty alt because this is purely decorative
           style={{ width:"100%", height:"100%", objectFit:"cover", filter:"grayscale(55%) contrast(1.1)" }}
           onError={e => { e.currentTarget.style.display="none"; }}
         />
@@ -107,14 +97,14 @@ function ArchitectFrame() {
         {/* Dot grid */}
         <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px)", backgroundSize:"32px 32px", pointerEvents:"none" }} />
 
-        {/* Scan line */}
-        <div style={{ position:"absolute", left:0, right:0, top:`${scanY}%`, height:1, background:"linear-gradient(to right,transparent,rgba(242,92,67,0.55),transparent)", boxShadow:"0 0 8px rgba(242,92,67,0.3)", pointerEvents:"none" }} />
+        {/* Scan line - GPU Accelerated CSS Animation */}
+        <div className="hardware-scanline" style={{ position:"absolute", left:0, right:0, height:1, background:"linear-gradient(to right,transparent,rgba(242,92,67,0.55),transparent)", boxShadow:"0 0 8px rgba(242,92,67,0.3)", pointerEvents:"none" }} />
 
         {/* CRT overlay */}
         <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(transparent 50%,rgba(0,0,0,0.28) 50%)", backgroundSize:"100% 4px", pointerEvents:"none", mixBlendMode:"overlay" }} />
 
         {/* Reticle */}
-        <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)" }}>
+        <div className="reticle-pulse" style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)" }}>
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
             <circle cx="20" cy="20" r="12" stroke="rgba(242,92,67,0.18)" strokeWidth="1"/>
             <line x1="20" y1="0"  x2="20" y2="8"  stroke="rgba(242,92,67,0.25)" strokeWidth="1"/>
@@ -133,7 +123,7 @@ function ArchitectFrame() {
         </div>
         <div style={{ textAlign:"right" }}>
           <div style={{ fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,0.55)", letterSpacing:"0.1em", lineHeight:1.8 }}>LEAD ARCHITECT</div>
-          <div style={{ fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,0.55)", letterSpacing:"0.1em" }}>COLOMBO, LK</div>
+          <div style={{ fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,0.55)", letterSpacing:"0.1em" }}>BORALESGAMUWA, LK</div>
         </div>
       </div>
     </div>
@@ -143,16 +133,24 @@ function ArchitectFrame() {
 // ─── STAT BAR ─────────────────────────────────────────────────────────────────
 function StatBar({ label, value, max, unit, active, delay }: { label: string; value: number; max: number; unit: string; active: boolean; delay: number }) {
   const [fill, setFill] = useState(0);
+  
   useEffect(() => {
     if (!active) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    if (prefersReducedMotion) {
+       setFill(value);
+       return;
+    }
+
     const t = setTimeout(() => setFill(value), delay);
     return () => clearTimeout(t);
   }, [active, value, delay]);
 
   return (
-    <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+    <div aria-hidden="true" style={{ display:"flex", flexDirection:"column", gap:6 }}>
       <div style={{ display:"flex", justifyContent:"space-between" }}>
-        <span style={{ fontFamily:"var(--font-mono)", fontSize:11, letterSpacing:"0.18em", color:"rgba(255,255,255,0.5)", textTransform:"uppercase" }}>{label}</span>
+        <span style={{ fontFamily:"var(--font-mono)", fontSize:11, letterSpacing:"0.18em", color:"rgba(255,255,255,0.6)", textTransform:"uppercase" }}>{label}</span>
         <span style={{ fontFamily:"var(--font-mono)", fontSize:11, color:"#F25C43", letterSpacing:"0.1em" }}>{value}{unit}</span>
       </div>
       <div style={{ height:2, background:"rgba(255,255,255,0.05)", position:"relative", overflow:"hidden" }}>
@@ -184,8 +182,16 @@ export default function About() {
   return (
     <>
       <style>{`
+        /* ACCESSIBILITY UTILITIES */
+        .sr-only {
+          position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+          overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+        }
+
         @keyframes blink     { 0%,100%{opacity:1} 50%{opacity:0} }
         @keyframes navyPulse { 0%,100%{opacity:0.25} 50%{opacity:0.5} }
+        @keyframes scanDrop  { 0%{top:0%; opacity:0;} 10%{opacity:1;} 90%{opacity:1;} 100%{top:100%; opacity:0;} }
+        @keyframes reticleGlow { 0%,100%{opacity:0.7} 50%{opacity:1; filter:drop-shadow(0 0 4px rgba(242,92,67,0.4))} }
 
         .about-left {
           opacity:0; transform:translateX(-24px);
@@ -198,22 +204,28 @@ export default function About() {
         }
         .about-right.visible { opacity:1; transform:translateX(0); }
 
+        .hardware-scanline {
+          animation: scanDrop 4s linear infinite;
+        }
+        
+        .reticle-pulse {
+          animation: reticleGlow 3s ease-in-out infinite;
+        }
+
+        .terminal-cursor {
+          animation: blink 1s step-end infinite;
+        }
+
         .manifesto-p {
           font-family:var(--font-sans);
           font-size:16px; font-weight:300;
-          color:rgba(255,255,255,0.62);
+          color:rgba(255,255,255,0.7);
           line-height:1.85; letter-spacing:0.02em;
         }
         .manifesto-p + .manifesto-p { margin-top:18px; }
         .accent-word { color:#F25C43; font-weight:400; }
         .white-word  { color:rgba(255,255,255,0.92); font-weight:400; }
 
-        /* ── Headline stroke fix ──
-           Three-part headline:
-           Line 1: solid white — anchor
-           Line 2: coral — the tension word
-           Line 3: outline — visible on dark via increased stroke + glow
-        */
         .hl-solid  { display:block; color:#fff; }
         .hl-coral  { display:block; color:#F25C43; }
         .hl-outline {
@@ -221,6 +233,14 @@ export default function About() {
           -webkit-text-stroke:1.5px rgba(255,255,255,0.65);
           color:transparent;
           filter:drop-shadow(0 0 20px rgba(255,255,255,0.08));
+        }
+
+        /* REDUCED MOTION SUPPORT */
+        @media (prefers-reduced-motion: reduce) {
+          .about-left, .about-right { opacity: 1; transform: none; transition: none; }
+          .hardware-scanline { display: none; }
+          .reticle-pulse, .terminal-cursor { animation: none; opacity: 1; }
+          .navy-glow { animation: none !important; }
         }
 
         @media (max-width:900px) {
@@ -249,10 +269,17 @@ export default function About() {
           position: "relative", overflow: "hidden",
         }}
       >
+        {/* Screen Reader Semantic Text */}
+        <div className="sr-only">
+          <h2>About Ahamed Najman - Lead Front-End Architect</h2>
+          <p>Operator Profile: Base in Boralesgamuwa, LK. Degree in B.E. Computer Systems. Core Stack includes Next.js, Tailwind, and Sanity.</p>
+          <p>System Metrics: PageSpeed Score 100/100. LCP Target 0.8 seconds. Over 20 projects deployed with 100% Client Satisfaction.</p>
+        </div>
+
         {/* Coral glow — right */}
         <div style={{ position:"absolute", top:"50%", right:"8%", transform:"translateY(-50%)", width:500, height:500, borderRadius:"50%", background:"radial-gradient(circle, rgba(242,92,67,0.04) 0%, transparent 70%)", pointerEvents:"none" }} />
         {/* Navy glow — left */}
-        <div style={{ position:"absolute", top:"20%", left:"-5%", width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle, rgba(26,40,72,0.35) 0%, transparent 70%)", pointerEvents:"none", animation:"navyPulse 7s ease-in-out infinite" }} />
+        <div className="navy-glow" style={{ position:"absolute", top:"20%", left:"-5%", width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle, rgba(26,40,72,0.35) 0%, transparent 70%)", pointerEvents:"none", animation:"navyPulse 7s ease-in-out infinite" }} />
 
         <div
           className="about-grid"
@@ -274,7 +301,7 @@ export default function About() {
           <div className={`about-right${entered ? " visible" : ""}`}>
 
             {/* Label badge */}
-            <div style={{
+            <div aria-hidden="true" style={{
               display:"inline-flex", alignItems:"center", gap:8,
               padding:"5px 12px",
               border:"1px solid rgba(255,255,255,0.07)",
@@ -282,11 +309,10 @@ export default function About() {
               fontFamily:"var(--font-mono)", fontSize:11, letterSpacing:"0.3em",
               color:"#F25C43", textTransform:"uppercase", marginBottom:28,
             }}>
-              <span style={{ width:5, height:5, borderRadius:"50%", background:"#F25C43", display:"inline-block", animation:"blink 2s ease infinite" }} />
+              <span className="terminal-cursor" style={{ width:5, height:5, borderRadius:"50%", background:"#F25C43", display:"inline-block" }} />
               THE_OPERATOR // EXECUTION_MANIFESTO
             </div>
 
-            {/* ── HEADLINE — three lines, three treatments ── */}
             <h2
               className="about-headline"
               style={{
@@ -296,11 +322,8 @@ export default function About() {
                 textTransform:"uppercase", marginBottom:40,
               }}
             >
-              {/* Line 1 — solid white, establishes the claim */}
               <span className="hl-solid">Your worst site.</span>
-              {/* Line 2 — coral, the pivot */}
               <span className="hl-coral">Our best work.</span>
-              {/* Line 3 — outline, the result — HIGH VISIBILITY FIX */}
               <span className="hl-outline">Delivered.</span>
             </h2>
 
@@ -324,19 +347,19 @@ export default function About() {
               padding:"24px", marginBottom:24,
               display:"flex", flexDirection:"column", gap:16,
             }}>
-              <div style={{ fontFamily:"var(--font-mono)", fontSize:11, letterSpacing:"0.28em", color:"rgba(255,255,255,0.35)", marginBottom:4, textTransform:"uppercase" }}>
+              <div aria-hidden="true" style={{ fontFamily:"var(--font-mono)", fontSize:11, letterSpacing:"0.28em", color:"rgba(255,255,255,0.4)", marginBottom:4, textTransform:"uppercase" }}>
                 SYSTEM_METRICS // LIVE_BENCHMARKS
               </div>
               <StatBar label="PageSpeed Score"     value={100} max={100} unit="/100" active={entered} delay={400}  />
               <StatBar label="LCP Target"          value={0.8} max={3}   unit="s"    active={entered} delay={600}  />
-              <StatBar label="Projects Deployed"   value={15}  max={20}  unit="+"    active={entered} delay={800}  />
+              <StatBar label="Projects Deployed"   value={20}  max={20}  unit="+"    active={entered} delay={800}  />
               <StatBar label="Client Satisfaction" value={100} max={100} unit="%"    active={entered} delay={1000} />
             </div>
 
             {/* Network tags */}
-            <div className="net-tags" style={{ display:"flex", gap:2 }}>
+            <div className="net-tags" aria-hidden="true" style={{ display:"flex", gap:2 }}>
               {[
-                { label:"CORE_STACK", value:"NEXT.JS // THREE.JS // WEBGL",  accent:"coral" },
+                { label:"CORE_STACK", value:"NEXT.JS // TAILWIND // SANITY",  accent:"coral" },
                 { label:"NETWORK",    value:"UK // UAE // GLOBAL",            accent:"navy"  },
               ].map((item, i) => (
                 <div key={i} style={{
@@ -348,7 +371,7 @@ export default function About() {
                   <div style={{ fontFamily:"var(--font-mono)", fontSize:11, color: i===0?"#F25C43":"rgba(26,40,72,0.9)", letterSpacing:"0.2em", marginBottom:6, filter: i===1?"brightness(3)":"none" }}>
                     {item.label}
                   </div>
-                  <div style={{ fontFamily:"var(--font-mono)", fontSize:11, color:"rgba(255,255,255,0.6)", letterSpacing:"0.1em" }}>
+                  <div style={{ fontFamily:"var(--font-mono)", fontSize:11, color:"rgba(255,255,255,0.7)", letterSpacing:"0.1em" }}>
                     {item.value}
                   </div>
                 </div>
